@@ -271,6 +271,26 @@
     .qblock.needs-answer,.exam-q.needs-answer{outline:2px solid var(--red);outline-offset:3px}
     .route-card button{margin-top:10px}
     .btn:disabled{opacity:.55;cursor:default}
+    :focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+    .hero-card :focus-visible,footer :focus-visible{outline-color:var(--yellow)}
+    .bottom-nav .nav-btn{min-width:0}
+    .audit-notes{margin-top:14px}
+    .audit-notes summary{cursor:pointer;color:var(--navy);font-weight:800}
+    .audit-notes label{display:block;margin-top:8px;font-size:.83rem}
+    .audit-notes input,.audit-notes textarea{width:100%}
+    .audit-notes textarea{min-height:66px}
+    .micro{color:var(--text)}
+    .audit-notes [hidden]{display:none}
+    @media(max-width:460px){
+      .brand-copy span{letter-spacing:.06em}
+      .utility-in{gap:6px}
+      .access-menu summary{font-size:.68rem}
+      .grid-2>*,.grid-3>*,.form-grid>*{min-width:0}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+    }
   </style>
 <script defer src="https://www.movidasst.com/analytics.js?v=20261025-ga4com2"></script>
 </head>
@@ -312,7 +332,7 @@
   </div>
 </header>
 
-<main id="main">
+<main id="main" tabindex="-1">
 <section class="view active" id="view-inicio" data-view="inicio" aria-labelledby="home-title">
   <div class="hero">
     <div class="shell hero-grid">
@@ -331,7 +351,7 @@
         <div class="rule">Antes de usar una respuesta de IA en SST, <strong>pásala por <span class="auditoria">Auditor<span class="ia-mark">IA</span></span>.</strong></div>
         <div class="meter-wrap">
           <div class="meter-head"><span>Tu avance</span><span id="progressText">0%</span></div>
-          <p class="study-progress"><strong id="dayCount">0 de 4 días completados</strong><br>Tu progreso se guarda en este dispositivo.</p>
+          <p class="study-progress"><strong id="dayCount">0 de 4 días completados</strong><br><span id="storageNote">Tu progreso se guarda en este dispositivo.</span></p>
           <div class="meter" role="progressbar" aria-label="Progreso de estudio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progressBar"></span></div>
         </div>
       </aside>
@@ -574,6 +594,7 @@
                 <div class="quote">Pregunta de reflexión</div>
                 <p>Si la IA no detectó la energía almacenada porque nadie la describió, ¿el error pertenece al modelo, al prompt, a la información de entrada o al proceso de validación? La respuesta madura es: <strong>al sistema completo de uso</strong>; la barrera final sigue siendo humana.</p>
               </div>
+              <p class="micro study-actions">Fuentes de la cápsula: <a href="https://www.iso.org/standard/63787.html" target="_blank" rel="noopener">ISO 45001:2018</a> y <a href="https://www.cdc.gov/niosh/hierarchy-of-controls/about/index.html" target="_blank" rel="noopener">jerarquía de controles de NIOSH</a>.</p>
               <div class="row study-actions"><button class="btn btn-primary btn-small" data-complete-day="1">Marcar como completada y continuar</button><button class="btn btn-secondary btn-small" data-open-case="energia">Practicar · Energía residual</button></div>
             </div>
           </div>
@@ -604,6 +625,7 @@
                 <div class="quote">¿Sabías que…?</div>
                 <p>NIST recomienda revisar y verificar las fuentes y citas de las salidas generativas durante la medición de riesgo y el monitoreo continuo. <a href="https://doi.org/10.6028/NIST.AI.600-1" target="_blank" rel="noopener">Consulta [2]</a>.</p>
               </div>
+              <p class="micro study-actions">Fuentes de la cápsula: <a href="https://doi.org/10.6028/NIST.AI.600-1" target="_blank" rel="noopener">NIST AI 600-1 (2024)</a>.</p>
               <div class="row study-actions"><button class="btn btn-primary btn-small" data-complete-day="2">Marcar como completada y continuar</button><button class="btn btn-secondary btn-small" data-open-case="higiene">Practicar · Límites de exposición</button></div>
             </div>
           </div>
@@ -637,6 +659,7 @@
                 <p>Después de obtener una propuesta, solicita: <strong>“Actúa como revisor adversarial. Identifica tres modos de falla, dos supuestos frágiles y la evidencia que falsaría tu recomendación.”</strong></p>
               </div>
               <p class="micro" style="margin-top:12px">En la pestaña <strong>Crear</strong> encontrarás un laboratorio que construye el prompt C.R.I.T.I.C.O. con tus datos.</p>
+              <p class="micro study-actions">Fuentes de la cápsula: <a href="https://doi.org/10.6028/NIST.AI.600-1" target="_blank" rel="noopener">NIST AI 600-1 (2024)</a> y <a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022</a>.</p>
               <div class="row study-actions"><button class="btn btn-primary btn-small" data-complete-day="3">Marcar como completada y continuar</button><button class="btn btn-secondary btn-small" data-open-case="ergonomia">Practicar · Ergonomía</button></div>
             </div>
           </div>
@@ -678,6 +701,7 @@
                 <article class="card"><span class="tag">Revalidar</span><h3>¿Cuándo vuelve a prueba?</h3><p>Cuando cambia el modelo, proveedor, datos, proceso, norma, población expuesta o uso previsto; también ante errores repetidos o una señal de daño.</p></article>
                 <article class="card"><span class="tag">Detener y aprender</span><h3>Incidente de IA</h3><p>Registra salidas peligrosas, citas falsas, fugas de datos, falsos negativos y decisiones anuladas. Suspende el uso crítico hasta cerrar causa, barrera y prueba de retorno.</p></article>
               </div>
+              <p class="micro study-actions">Fuentes de la cápsula: <a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener">ISO/IEC 42001:2023</a> y <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">NIST AI RMF 1.0</a>.</p>
               <div class="row study-actions"><button class="btn btn-primary btn-small" data-complete-day="4">Marcar como completada y continuar</button><button class="btn btn-secondary btn-small" data-open-case="incidente">Practicar · Investigación de incidentes</button></div>
             </div>
           </div>
@@ -706,8 +730,9 @@
             <button class="option" data-case-answer="1">Detener el uso del borrador, inventariar energías, aislar, disipar y verificar cero energía.</button>
             <button class="option" data-case-answer="2">Conservar el procedimiento y pedir al supervisor que vigile los movimientos inesperados.</button>
           </div>
-          <div class="case-feedback callout success" data-feedback="correct"><strong>Correcto.</strong> La salida falló una condición física crítica. El control es revalidar el sistema de energías y comprobar el estado seguro, no mejorar la prosa.</div>
-          <div class="case-feedback callout danger" data-feedback="wrong"><strong>Aún no.</strong> El estado del panel no demuestra que desapareció la energía acumulada. Identifica las fuentes y los puntos de aislamiento, y exige evidencia de verificación antes de aceptar el borrador.</div>
+          <p class="micro study-actions">Fuente de apoyo: <a href="https://www.iso.org/standard/63787.html" target="_blank" rel="noopener">ISO 45001:2018</a> (norma internacional). Para aplicar el caso, identifica la jurisdicción y verifica edición y alcance en la fuente primaria.</p>
+          <div tabindex="-1" class="case-feedback callout success" data-feedback="correct"><strong>Correcto.</strong> La salida falló una condición física crítica. El control es revalidar el sistema de energías y comprobar el estado seguro, no mejorar la prosa.</div>
+          <div tabindex="-1" class="case-feedback callout danger" data-feedback="wrong"><strong>Aún no.</strong> El estado del panel no demuestra que desapareció la energía acumulada. Identifica las fuentes y los puntos de aislamiento, y exige evidencia de verificación antes de aceptar el borrador.</div>
         </div>
       </article>
 
@@ -720,8 +745,9 @@
             <button class="option" data-case-answer="1">Usar el valor de una ficha de datos de seguridad aunque la ficha no indique la jornada de referencia.</button>
             <button class="option" data-case-answer="2">Comprobar sustancia, fracción, jornada, edición, jurisdicción y texto de la fuente primaria.</button>
           </div>
-          <div class="case-feedback callout success" data-feedback="correct"><strong>Correcto.</strong> Un número aislado carece de alcance. La validación debe reconstruir qué mide, para quién, durante cuánto tiempo y bajo qué marco.</div>
-          <div class="case-feedback callout danger" data-feedback="wrong"><strong>Aún no.</strong> Faltan la fuente primaria, la jornada y la fracción a la que se refiere el valor. Si esos criterios no coinciden con el muestreo, cambia la interpretación del resultado.</div>
+          <p class="micro study-actions">El límite citado en este caso es ficticio. Para documentar uno real, registra jurisdicción, emisor, edición, fecha de revisión, jornada, fracción y enlace a la fuente primaria.</p>
+          <div tabindex="-1" class="case-feedback callout success" data-feedback="correct"><strong>Correcto.</strong> Un número aislado carece de alcance. La validación debe reconstruir qué mide, para quién, durante cuánto tiempo y bajo qué marco.</div>
+          <div tabindex="-1" class="case-feedback callout danger" data-feedback="wrong"><strong>Aún no.</strong> Faltan la fuente primaria, la jornada y la fracción a la que se refiere el valor. Si esos criterios no coinciden con el muestreo, cambia la interpretación del resultado.</div>
         </div>
       </article>
 
@@ -734,8 +760,9 @@
             <button class="option" data-case-answer="1">Evaluar eliminar la manipulación, reducir peso, rediseñar alturas, usar ayuda mecánica y organizar el trabajo.</button>
             <button class="option" data-case-answer="2">Reducir la exposición con pausas programadas y dejar el rediseño para cuando haya más molestias.</button>
           </div>
-          <div class="case-feedback callout success" data-feedback="correct"><strong>Correcto.</strong> Mueves la intervención hacia la fuente y el diseño. La capacitación puede acompañar, pero no reemplaza controles más eficaces.</div>
-          <div class="case-feedback callout danger" data-feedback="wrong"><strong>Aún no.</strong> Faltan peso, frecuencia y distancias de manipulación. Mide la tarea real y usa esos datos para decidir si puedes eliminar el traslado o rediseñar el puesto.</div>
+          <p class="micro study-actions">Fuente de apoyo: <a href="https://www.cdc.gov/niosh/hierarchy-of-controls/about/index.html" target="_blank" rel="noopener">jerarquía de controles de NIOSH</a> (guía técnica de EE. UU.). Confirma por separado los requisitos de tu jurisdicción.</p>
+          <div tabindex="-1" class="case-feedback callout success" data-feedback="correct"><strong>Correcto.</strong> Mueves la intervención hacia la fuente y el diseño. La capacitación puede acompañar, pero no reemplaza controles más eficaces.</div>
+          <div tabindex="-1" class="case-feedback callout danger" data-feedback="wrong"><strong>Aún no.</strong> Faltan peso, frecuencia y distancias de manipulación. Mide la tarea real y usa esos datos para decidir si puedes eliminar el traslado o rediseñar el puesto.</div>
         </div>
       </article>
 
@@ -748,8 +775,9 @@
             <button class="option" data-case-answer="1">Revisar la última capacitación y prescribir un refuerzo si hay registros incompletos.</button>
             <button class="option" data-case-answer="2">Tratarla como hipótesis y reconstruir tarea, barreras, diseño, supervisión, carga, cambios y condiciones organizativas.</button>
           </div>
-          <div class="case-feedback callout success" data-feedback="correct"><strong>Correcto.</strong> “Distracción” describe, pero rara vez explica. La investigación debe buscar condiciones y barreras que hicieron posible el evento.</div>
-          <div class="case-feedback callout danger" data-feedback="wrong"><strong>Aún no.</strong> Faltan la secuencia del trabajo y el estado de las barreras. Contrasta testimonios y registros con la tarea real antes de decidir qué controles corregir.</div>
+          <p class="micro study-actions">Fuente de apoyo: <a href="https://www.iso.org/standard/63787.html" target="_blank" rel="noopener">ISO 45001:2018</a> (norma internacional). Revisa la edición y los requisitos de investigación de tu jurisdicción.</p>
+          <div tabindex="-1" class="case-feedback callout success" data-feedback="correct"><strong>Correcto.</strong> “Distracción” describe, pero rara vez explica. La investigación debe buscar condiciones y barreras que hicieron posible el evento.</div>
+          <div tabindex="-1" class="case-feedback callout danger" data-feedback="wrong"><strong>Aún no.</strong> Faltan la secuencia del trabajo y el estado de las barreras. Contrasta testimonios y registros con la tarea real antes de decidir qué controles corregir.</div>
         </div>
       </article>
     </div>
@@ -796,7 +824,7 @@
     <div class="shell">
       <span class="eyebrow"><span class="pulse"></span> Laboratorio de aplicación</span>
       <h1 id="create-title" style="font-size:clamp(2.15rem,8vw,4.4rem)">Construye, audita y deja <em>trazabilidad</em></h1>
-      <p class="lead">Escribe solo información no sensible. La herramienta genera el texto en tu navegador; no envía ni almacena tus datos en un servidor.</p>
+      <p class="lead">Usa información pública o ficticia. El generador y el registro trabajan en esta pestaña. Sus textos y tus respuestas individuales se pierden al recargar. En el navegador se guardan el avance, las preferencias y el puntaje final. Las estadísticas de visitas de La Movida dependen de tu consentimiento y excluyen el texto de los formularios y las respuestas.</p>
     </div>
   </div>
 
@@ -926,7 +954,7 @@
           <div class="check"><input type="checkbox" id="a12"><label for="a12"><strong>Responsable:</strong> existe revisor competente, fecha y decisión documentada.</label></div>
         </div>
         <aside>
-          <div class="audit-score">
+          <div class="audit-score" role="status" aria-atomic="true">
             <span>Índice de auditabilidad</span>
             <div><strong id="auditPercent">0%</strong></div>
             <p id="auditLabel">No evaluado. Marca únicamente evidencias comprobables.</p>
@@ -936,6 +964,18 @@
             <div class="evidence"><i style="color:#4ca52e">●</i><div><strong>85–100% · Avanza con control.</strong> Conserva el registro y la aprobación definida.</div></div>
             <div class="evidence"><i style="color:#e8a600">●</i><div><strong>60–84% · Revisión obligatoria.</strong> Cierra brechas antes de utilizar la salida.</div></div>
             <div class="evidence"><i style="color:#d64545">●</i><div><strong>0–59% · No usar.</strong> La salida carece de barreras suficientes.</div></div>
+            <details class="audit-notes">
+              <summary>Datos del registro (opcionales)</summary>
+              <p class="micro">Usa referencias internas y un cargo o rol. Evita nombres, identificaciones y datos sensibles.</p>
+              <label for="auditEvidence">Evidencia consultada</label>
+              <textarea id="auditEvidence" maxlength="600" placeholder="Fuente primaria, edición, jurisdicción y fecha de consulta"></textarea>
+              <label for="auditDecision">Decisión</label>
+              <textarea id="auditDecision" maxlength="400" placeholder="Decisión tomada y motivo"></textarea>
+              <label for="auditReviewer">Responsable de la revisión</label>
+              <input id="auditReviewer" maxlength="120" placeholder="Cargo o rol">
+              <label for="auditPending">Pendientes de validación</label>
+              <textarea id="auditPending" maxlength="600" placeholder="Evidencia pendiente y siguiente paso"></textarea>
+            </details>
             <div class="row" style="margin-top:14px">
               <button class="btn btn-primary btn-small" id="downloadAudit">Descargar registro</button>
               <button class="btn btn-secondary btn-small" id="resetAudit">Reiniciar</button>
@@ -1122,7 +1162,7 @@
 <footer>
   <div class="shell foot-grid">
     <div>
-      <img class="logo-footer" src="/logo-oficial-movida-sst-plus.png" width="110" height="110" alt="Logo oficial de La Movida de SST Plus">
+      <img class="logo-footer" src="/logo-oficial-movida-sst-plus.png" width="110" height="110" loading="lazy" decoding="async" alt="Logo oficial de La Movida de SST Plus">
       <div class="foot-brand">La Movida de SST Plus</div>
       <div class="foot-links">
         <a href="https://www.movidasst.com/">Volver a La Movida</a>
@@ -1182,7 +1222,12 @@
   }
 
   function save() {
-    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (_) {}
+    try {
+      localStorage.setItem(KEY, JSON.stringify(state));
+      $("#storageNote").textContent = "Tu progreso se guarda en este dispositivo.";
+    } catch (_) {
+      $("#storageNote").textContent = "El navegador impide guardar el avance. Se perderá al recargar o cerrar esta pestaña.";
+    }
     renderProgress();
   }
 
@@ -1224,7 +1269,7 @@
     $("#listen").setAttribute("aria-label", "Escuchar la sección actual");
   }
 
-  function showView(name, setHash = true) {
+  function showView(name, setHash = true, anchor = name) {
     const target = $("[data-view='" + name + "']");
     if (!target) return;
     $$(".view").forEach(view => view.classList.toggle("active", view === target));
@@ -1236,19 +1281,24 @@
     state.view = name;
     save();
     stopSpeech();
-    if (setHash && location.hash !== "#" + name) history.replaceState(null, "", "#" + name);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (setHash && location.hash !== "#" + anchor) history.pushState(null, "", "#" + anchor);
+    if (anchor === name) window.scrollTo({ top: 0, behavior: "instant" });
   }
 
   $$("[data-nav]").forEach(control => control.addEventListener("click", event => {
     event.preventDefault();
     showView(control.dataset.nav);
+    const heading = $(".view.active h1");
+    if (heading) focusStudyTarget(heading);
   }));
 
   $$("[data-jump]").forEach(control => control.addEventListener("click", event => {
     event.preventDefault();
     const target = $(control.dataset.jump);
-    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (target) {
+      showView(target.closest("[data-view]").dataset.view, true, target.id);
+      focusStudyTarget(target, $("h2", target) || target);
+    }
   }));
 
   function focusStudyTarget(target, focus = target) {
@@ -1257,15 +1307,15 @@
     target.scrollIntoView({ block: "start" });
   }
 
-  function openDay(day) {
-    showView("aprender");
+  function openDay(day, setHash = true) {
+    showView("aprender", setHash, "dia" + day);
     const lesson = $("#dia" + day);
     lesson.open = true;
     focusStudyTarget(lesson, $("summary", lesson));
   }
 
-  function openCase(id) {
-    showView("practicar");
+  function openCase(id, setHash = true) {
+    showView("practicar", setHash, "caso-" + id);
     const card = $("[data-case='" + id + "']");
     focusStudyTarget(card, $("h3", card));
   }
@@ -1280,12 +1330,29 @@
     const next = studyDays.find(day => !state.days.includes(day));
     if (!next) showView("evaluar");
     else if (state.diagnosticComplete || state.days.length) openDay(next);
-    else focusStudyTarget($("#diagnostico"), $("#diagnostico h2"));
+    else {
+      showView("inicio", true, "diagnostico");
+      focusStudyTarget($("#diagnostico"), $("#diagnostico h2"));
+    }
   });
 
   const validViews = ["inicio", "aprender", "practicar", "crear", "evaluar"];
-  const hashView = location.hash.replace("#", "");
-  showView(validViews.includes(hashView) ? hashView : state.view, false);
+  function followHash() {
+    const hash = location.hash.slice(1);
+    if (/^dia[1-4]$/.test(hash)) return openDay(Number(hash.slice(3)), false);
+    if (/^caso-(energia|higiene|ergonomia|incidente)$/.test(hash)) return openCase(hash.slice(5), false);
+    const target = document.getElementById(hash);
+    const view = target?.closest("[data-view]");
+    if (view) {
+      showView(view.dataset.view, false, hash);
+      return focusStudyTarget(target, $("h2", target) || target);
+    }
+    const next = validViews.includes(hash) ? hash : validViews.includes(state.view) ? state.view : "inicio";
+    showView(next, false);
+    if (hash === "main") focusStudyTarget($("#main"));
+  }
+  window.addEventListener("hashchange", followHash);
+  followHash();
 
   $("#fontDown").addEventListener("click", () => {
     state.fontScale = Math.max(.88, Number((state.fontScale - .06).toFixed(2)));
@@ -1407,7 +1474,9 @@
       $$(".option", card).forEach(item => item.classList.remove("selected", "correct", "wrong"));
       option.classList.add(correct ? "correct" : "wrong");
       $$("[data-feedback]", card).forEach(box => box.classList.remove("show"));
-      $("[data-feedback='" + (correct ? "correct" : "wrong") + "']", card).classList.add("show");
+      const feedback = $("[data-feedback='" + (correct ? "correct" : "wrong") + "']", card);
+      feedback.classList.add("show");
+      feedback.focus();
       if (correct && !state.cases.includes(id)) {
         state.cases.push(id); save(); notify("Caso resuelto con criterio");
       }
@@ -1525,7 +1594,11 @@
     } catch (_) {
       const area = document.createElement("textarea");
       area.value = text; document.body.appendChild(area); area.select();
-      document.execCommand("copy"); area.remove(); notify("Texto copiado");
+      let copied = false;
+      try { copied = document.execCommand("copy"); } catch (_) {}
+      area.remove();
+      $("#copyPrompt").focus();
+      notify(copied ? "Texto copiado" : "Selecciona el texto del prompt y cópialo manualmente.");
     }
   }
 
@@ -1533,8 +1606,11 @@
     const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
-    link.href = url; link.download = filename; link.click();
-    setTimeout(() => URL.revokeObjectURL(url), 500);
+    link.href = url; link.download = filename;
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
   }
 
   $("#copyPrompt").addEventListener("click", () => copyText($("#promptOutput").value));
@@ -1557,6 +1633,7 @@
   $$("#auditChecklist input").forEach(item => item.addEventListener("change", updateAudit));
   $("#resetAudit").addEventListener("click", () => {
     $$("#auditChecklist input").forEach(item => item.checked = false);
+    $$(".audit-notes input,.audit-notes textarea").forEach(field => field.value = "");
     updateAudit(); notify("AuditorIA reiniciada");
   });
   $("#downloadAudit").addEventListener("click", () => {
@@ -1565,6 +1642,8 @@
       "REGISTRO AUDITORIA · REVISIÓN DE SALIDA IA EN SST",
       "Fecha: " + new Date().toLocaleString("es-CL"),
       "Resultado: " + pct + "% · " + label,
+      "",
+      ...$$(".audit-notes label").map(field => field.textContent + ": " + clean(document.getElementById(field.htmlFor).value, "Sin registrar")),
       "",
       ...checks.map(item => (item.checked ? "[CUMPLE] " : "[PENDIENTE] ") + $("label[for='" + item.id + "']").innerText),
       "",
