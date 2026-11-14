@@ -1574,7 +1574,7 @@
     downloadText("auditoria-validada-sst.txt", lines.join("\n"));
   });
 
-  const examQuestions = $("[data-exam]");
+  const examQuestions = $$("[data-exam]");
   function updateExamCount() {
     const answered = examQuestions.filter(fieldset => $("input:checked", fieldset)).length;
     $("#examCount").textContent = answered + " de " + examQuestions.length + " respondidas";
