@@ -320,23 +320,23 @@
       html{scroll-padding-top:140px}
     }
     @media print{.utility{display:none!important}}
-    .header-tools{display:flex;justify-content:flex-start}
-    .header-tools .icon-btn{width:36px;height:40px}
+
+
     .utility-in{justify-content:flex-start}
     @media(min-width:960px){
       .utility-in>.bottom-nav{margin-left:auto}
       .utility-in{column-gap:10px}
-      .header-tools .tools{gap:3px}
+
       .brand-horizontal{width:152px}
       .header-social a{width:37px}
       .bottom-nav .nav-btn{padding-inline:6px}
     }
     @media(max-width:959px){
       .utility-in{grid-template-columns:minmax(0,1fr) auto}
-      .header-tools{grid-area:2 / 1}
+
       .header-social{grid-area:2 / 2;justify-content:flex-start}
-      .header-tools .tools,.header-social{gap:3px}
-      .header-tools .icon-btn,.header-social a{width:32px;height:40px}
+
+
       html{scroll-padding-top:140px}
     }
     @media(max-width:959px){
@@ -354,6 +354,15 @@
       .bottom-nav .nav-btn{border-radius:8px}
       html{scroll-padding-bottom:calc(64px + env(safe-area-inset-bottom))}
     }
+    .brand-slogan{color:var(--navy);font-size:.62rem;font-weight:800;line-height:1.2}
+    [data-view^="crear-paso-"] > nav{margin-bottom:24px}
+    @media(max-width:959px){
+      .utility-in{grid-template-columns:minmax(0,1fr) auto}
+      .header-social{grid-area:1 / 2}
+      .brand-horizontal{width:min(100%,152px);height:44px}
+      .brand-slogan{font-size:.56rem}
+      html{scroll-padding-top:92px}
+    }
   </style>
 <script defer src="https://www.movidasst.com/analytics.js?v=20261025-ga4com2"></script>
 </head>
@@ -364,13 +373,8 @@
   <div class="shell utility-in">
     <a class="brand" href="#inicio" data-nav="inicio" aria-label="La Movida de SST Plus, ir al inicio">
       <img class="brand-horizontal" src="/logo-horizontal-movida-sst-plus.webp" alt="La Movida de SST Plus">
+      <span class="brand-slogan">De la Reacción a la Prevención</span>
     </a>
-    <div class="header-tools"><div class="tools" aria-label="Herramientas de accesibilidad">
-      <button class="icon-btn" id="fontDown" aria-label="Reducir tamaño del texto">A−</button>
-      <button class="icon-btn" id="fontUp" aria-label="Aumentar tamaño del texto">A+</button>
-      <button class="icon-btn" id="contrast" aria-label="Activar alto contraste" title="Alto contraste" aria-pressed="false"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor"/></svg></button>
-      <button class="icon-btn" id="listen" aria-label="Escuchar la sección actual" title="Lectura en voz alta" aria-pressed="false"><svg class="listen-play" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4m12-1a6 6 0 0 1 0 8m2-11a10 10 0 0 1 0 14"/></svg><svg class="listen-stop" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg></button>
-      </div></div>
     <nav class="bottom-nav" aria-label="Navegación principal">
       <button class="nav-btn active" data-nav="inicio" aria-label="Inicio">
         <svg aria-hidden="true"><use href="#i-home"></use></svg><span>Inicio</span>
@@ -408,7 +412,7 @@
         <p class="lead">Cómo auditar, validar y aplicar inteligencia artificial sin delegar la responsabilidad técnica, legal, ética ni operacional.</p>
         <div class="hero-actions">
           <button class="btn btn-primary" id="startStudy">Comenzar diagnóstico →</button>
-          <button class="btn btn-secondary" data-nav="aprender">Explorar la ruta</button>
+          <button class="btn btn-secondary" data-nav="ruta">Explorar la ruta</button>
           <button class="btn btn-soft btn-small" id="shareGuide">Compartir</button>
         </div>
       </div>
@@ -429,6 +433,63 @@
     </div>
   </div>
 
+  <div class="shell row study-actions"><a class="btn btn-secondary" href="#fundamentos" data-nav="fundamentos">Fundamentos de IA en SST</a></div>
+</section>
+  <section class="section view" id="diagnostico" data-view="diagnostico" data-parent-view="inicio" aria-labelledby="diagnostic-title">
+    <div class="shell">
+      <div class="section-head">
+        <div>
+          <span class="tag">Diagnóstico inicial · 4 decisiones</span>
+          <h1 id="diagnostic-title">¿Qué tan auditable es tu uso de IA?</h1>
+          <p>No mide cuánto sabes de tecnología. Mide si conservas el control técnico cuando la respuesta parece convincente.</p>
+        </div>
+      </div>
+      <p><a href="#inicio" data-nav="inicio">← Volver a Inicio</a></p>
+      <div class="card diagnostic">
+        <p class="study-count" id="diagnosticCount" aria-live="polite">0 de 4 respondidas</p>
+        <div class="qblock" data-diag="0">
+          <div class="qtitle">1. La IA cita un artículo exacto de una norma que no tienes a mano. ¿Qué haces?</div>
+          <div class="options">
+            <button class="option" data-answer="0">Lo uso porque la cita es muy específica.</button>
+            <button class="option" data-answer="1">Pido otra respuesta a la misma IA para confirmarlo.</button>
+            <button class="option" data-answer="2">Marco la afirmación como no verificada y consulto la fuente oficial vigente.</button>
+          </div>
+        </div>
+        <div class="qblock" data-diag="1">
+          <div class="qtitle">2. Debes revisar una foto de un incidente donde se ven rostros, credenciales y el plano interno. ¿Cuál es el primer control?</div>
+          <div class="options">
+            <button class="option" data-answer="0">Subirla: es para prevenir otro incidente.</button>
+            <button class="option" data-answer="1">Minimizar y desidentificar datos, y usar solo una herramienta autorizada.</button>
+            <button class="option" data-answer="2">Borrar únicamente el nombre del archivo.</button>
+          </div>
+        </div>
+        <div class="qblock" data-diag="2">
+          <div class="qtitle">3. La matriz generada luce completa, pero no hubo observación de la tarea. ¿Qué representa?</div>
+          <div class="options">
+            <button class="option" data-answer="0">Una hipótesis estructurada que debe contrastarse en campo.</button>
+            <button class="option" data-answer="1">Una evaluación terminada si incluye probabilidad y consecuencia.</button>
+            <button class="option" data-answer="2">Una evidencia suficiente para auditoría.</button>
+          </div>
+        </div>
+        <div class="qblock" data-diag="3">
+          <div class="qtitle">4. Para reducir una exposición, la IA recomienda “capacitar y usar EPP”. ¿Qué falta cuestionar?</div>
+          <div class="options">
+            <button class="option" data-answer="0">Si puede redactar la capacitación con mejor tono.</button>
+            <button class="option" data-answer="1">Si antes se puede eliminar, sustituir o controlar mediante ingeniería.</button>
+            <button class="option" data-answer="2">Si el EPP combina con la identidad visual.</button>
+          </div>
+        </div>
+        <div class="row" style="margin-top:18px">
+          <button class="btn btn-primary" id="scoreDiagnostic">Ver mi perfil</button>
+          <button class="btn btn-secondary btn-small" id="resetDiagnostic">Reiniciar</button>
+        </div>
+        <div class="result callout" id="diagnosticResult" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+<section class="view" id="fundamentos" data-view="fundamentos" data-parent-view="aprender" aria-label="Fundamentos de IA en SST">
+  <div class="shell study-actions"><a href="#aprender" data-nav="aprender">← Volver a Aprender</a></div>
   <section class="section">
     <div class="shell">
       <div class="section-head">
@@ -485,57 +546,15 @@
     </div>
   </section>
 
-  <section class="section" id="diagnostico">
+</section>
+<section class="view" id="view-aprender" data-view="aprender" aria-labelledby="learn-title">
+  <div class="section">
     <div class="shell">
-      <div class="section-head">
-        <div>
-          <span class="tag">Diagnóstico inicial · 4 decisiones</span>
-          <h2>¿Qué tan auditable es tu uso de IA?</h2>
-          <p>No mide cuánto sabes de tecnología. Mide si conservas el control técnico cuando la respuesta parece convincente.</p>
-        </div>
-      </div>
-      <div class="card diagnostic">
-        <p class="study-count" id="diagnosticCount" aria-live="polite">0 de 4 respondidas</p>
-        <div class="qblock" data-diag="0">
-          <div class="qtitle">1. La IA cita un artículo exacto de una norma que no tienes a mano. ¿Qué haces?</div>
-          <div class="options">
-            <button class="option" data-answer="0">Lo uso porque la cita es muy específica.</button>
-            <button class="option" data-answer="1">Pido otra respuesta a la misma IA para confirmarlo.</button>
-            <button class="option" data-answer="2">Marco la afirmación como no verificada y consulto la fuente oficial vigente.</button>
-          </div>
-        </div>
-        <div class="qblock" data-diag="1">
-          <div class="qtitle">2. Debes revisar una foto de un incidente donde se ven rostros, credenciales y el plano interno. ¿Cuál es el primer control?</div>
-          <div class="options">
-            <button class="option" data-answer="0">Subirla: es para prevenir otro incidente.</button>
-            <button class="option" data-answer="1">Minimizar y desidentificar datos, y usar solo una herramienta autorizada.</button>
-            <button class="option" data-answer="2">Borrar únicamente el nombre del archivo.</button>
-          </div>
-        </div>
-        <div class="qblock" data-diag="2">
-          <div class="qtitle">3. La matriz generada luce completa, pero no hubo observación de la tarea. ¿Qué representa?</div>
-          <div class="options">
-            <button class="option" data-answer="0">Una hipótesis estructurada que debe contrastarse en campo.</button>
-            <button class="option" data-answer="1">Una evaluación terminada si incluye probabilidad y consecuencia.</button>
-            <button class="option" data-answer="2">Una evidencia suficiente para auditoría.</button>
-          </div>
-        </div>
-        <div class="qblock" data-diag="3">
-          <div class="qtitle">4. Para reducir una exposición, la IA recomienda “capacitar y usar EPP”. ¿Qué falta cuestionar?</div>
-          <div class="options">
-            <button class="option" data-answer="0">Si puede redactar la capacitación con mejor tono.</button>
-            <button class="option" data-answer="1">Si antes se puede eliminar, sustituir o controlar mediante ingeniería.</button>
-            <button class="option" data-answer="2">Si el EPP combina con la identidad visual.</button>
-          </div>
-        </div>
-        <div class="row" style="margin-top:18px">
-          <button class="btn btn-primary" id="scoreDiagnostic">Ver mi perfil</button>
-          <button class="btn btn-secondary btn-small" id="resetDiagnostic">Reiniciar</button>
-        </div>
-        <div class="result callout" id="diagnosticResult" aria-live="polite"></div>
-      </div>
+      <span class="eyebrow"><span class="pulse"></span> Núcleo de aprendizaje</span>
+      <h1 id="learn-title" style="font-size:clamp(2.15rem,8vw,4.4rem)">Cómo revisar una respuesta de IA <em>antes de usarla en SST</em></h1>
+      <p class="lead">Usaremos <span class="auditoria">Auditor<span class="ia-mark">IA</span></span> para revisar la respuesta y C.R.I.T.I.C.O. para formular solicitudes con datos, límites y fuentes claras.</p>
     </div>
-  </section>
+  </div>
 
   <section class="section">
     <div class="shell">
@@ -558,16 +577,6 @@
       </div>
     </div>
   </section>
-</section>
-<section class="view" id="view-aprender" data-view="aprender" aria-labelledby="learn-title">
-  <div class="section">
-    <div class="shell">
-      <span class="eyebrow"><span class="pulse"></span> Núcleo de aprendizaje</span>
-      <h1 id="learn-title" style="font-size:clamp(2.15rem,8vw,4.4rem)">Cómo revisar una respuesta de IA <em>antes de usarla en SST</em></h1>
-      <p class="lead">Usaremos <span class="auditoria">Auditor<span class="ia-mark">IA</span></span> para revisar la respuesta y C.R.I.T.I.C.O. para formular solicitudes con datos, límites y fuentes claras.</p>
-    </div>
-  </div>
-
   <section class="section" style="padding-top:8px">
     <div class="shell">
       <div class="section-head">
@@ -787,6 +796,10 @@
 
   <section class="section" style="padding-top:6px">
     <div class="shell grid-2">
+      <button class="btn btn-secondary" data-open-case="energia">Energía residual en mantenimiento →</button>
+      <button class="btn btn-secondary" data-open-case="higiene">Un límite «oficial» sin origen →</button>
+      <button class="btn btn-secondary" data-open-case="ergonomia">La respuesta termina en capacitación →</button>
+      <button class="btn btn-secondary" data-open-case="incidente">«El trabajador se distrajo» →</button>
       <article class="card case" data-case="energia">
         <div class="case-head"><span class="tag">Caso 1 · Seguridad</span><h3>Energía residual en mantenimiento</h3><p class="micro" style="color:#d5f3f2">La IA redactó el bloqueo eléctrico de una prensa. En la caminata aparece presión hidráulica acumulada.</p></div>
         <div class="case-body">
@@ -895,9 +908,9 @@
   </div>
 
   <nav class="shell row study-actions" aria-label="Pasos de Crear">
-    <a class="btn btn-secondary" href="#crear-paso-1" data-jump="#crear-paso-1">1. Revisar datos</a>
-    <a class="btn btn-secondary" href="#crear-paso-2" data-jump="#crear-paso-2">2. Generar prompt</a>
-    <a class="btn btn-secondary" href="#crear-paso-3" data-jump="#crear-paso-3">3. Auditar salida</a>
+    <a class="btn btn-secondary" href="#crear-paso-1" data-nav="crear-paso-1">1. Revisar datos</a>
+    <a class="btn btn-secondary" href="#crear-paso-2" data-nav="crear-paso-2">2. Generar prompt</a>
+    <a class="btn btn-secondary" href="#crear-paso-3" data-nav="crear-paso-3">3. Auditar salida</a>
   </nav>
   <section id="crear-paso-1" class="section" style="padding-top:6px">
     <div class="shell">
@@ -1278,7 +1291,6 @@
   const $$ = (s, root = document) => [...root.querySelectorAll(s)];
   const toast = $("#toast");
   let toastTimer;
-  let speaking = false;
 
   function notify(message) {
     toast.textContent = message;
@@ -1328,11 +1340,68 @@
     });
   }
 
-  function stopSpeech() {
-    if ("speechSynthesis" in window) window.speechSynthesis.cancel();
-    speaking = false;
-    $("#listen").setAttribute("aria-pressed", "false");
-    $("#listen").setAttribute("aria-label", "Escuchar la sección actual");
+  // Move each study item out of its index so each route exposes a single view.
+  const main = $("#main");
+  const createLinks = $(".view[data-view='crear'] nav");
+  for (let step = 1; step <= 3; step++) {
+    const panel = $("#crear-paso-" + step);
+    panel.prepend(createLinks.cloneNode(true));
+    panel.classList.add("view");
+    panel.dataset.view = panel.id;
+    panel.dataset.parentView = "crear";
+    main.append(panel);
+  }
+  for (const item of $$(".lesson[id], [data-case]")) {
+    const isLesson = item.matches(".lesson");
+    const panel = document.createElement("section");
+    panel.className = "view section";
+    panel.id = isLesson ? item.id : "caso-" + item.dataset.case;
+    panel.dataset.view = panel.id;
+    panel.dataset.parentView = isLesson ? "aprender" : "practicar";
+    if (isLesson) {
+      item.removeAttribute("id");
+      item.open = true;
+    }
+    const body = document.createElement("div");
+    body.className = "shell";
+    const back = document.createElement("a");
+    back.dataset.nav = isLesson ? "ruta" : "practicar";
+    back.href = "#" + back.dataset.nav;
+    back.textContent = isLesson ? "← Volver a la ruta" : "← Volver a los casos";
+    back.className = "btn btn-secondary btn-small";
+    const row = document.createElement("p");
+    row.append(back);
+    body.append(row, item);
+    panel.append(body);
+    main.append(panel);
+  }
+
+  const extraViews = [
+    ["aprender", ["ruta", "metodo", "sesgos"], ["Ruta de cuatro días", "Método AuditorIA", "Sesgos al revisar IA"]],
+    ["evaluar", ["evaluacion", "glosario", "fuentes"], ["Comenzar evaluación", "Glosario", "Fuentes y bibliografía"]]
+  ];
+  for (const [parent, routes, labels] of extraViews) {
+    const index = $("[data-view='" + parent + "']");
+    const panels = [...index.children].filter(child => child.matches("section"));
+    const links = document.createElement("nav");
+    links.className = "shell row study-actions";
+    links.setAttribute("aria-label", "Secciones de " + parent);
+    routes.forEach((route, i) => {
+      const panel = panels[i];
+      panel.id = route;
+      panel.classList.add("view");
+      panel.dataset.view = route;
+      panel.dataset.parentView = parent;
+      const link = document.createElement("a");
+      link.className = i === 0 ? "btn btn-primary" : "btn btn-secondary";
+      link.href = "#" + route;
+      link.dataset.nav = route;
+      link.textContent = labels[i];
+      links.append(link);
+      main.append(panel);
+    });
+    index.append(links);
+    if (parent === "aprender") panels[3]?.remove();
   }
 
   function showView(name, setHash = true, anchor = name) {
@@ -1340,13 +1409,12 @@
     if (!target) return;
     $$(".view").forEach(view => view.classList.toggle("active", view === target));
     $$(".nav-btn").forEach(btn => {
-      const active = btn.dataset.nav === name;
+      const active = btn.dataset.nav === (target.dataset.parentView || name);
       btn.classList.toggle("active", active);
       btn.setAttribute("aria-current", active ? "page" : "false");
     });
-    state.view = name;
+    state.view = target.dataset.parentView || name;
     save();
-    stopSpeech();
     if (setHash && location.hash !== "#" + anchor) history.pushState(null, "", "#" + anchor);
     if (anchor === name) window.scrollTo({ top: 0, behavior: "instant" });
   }
@@ -1354,8 +1422,11 @@
   $$("[data-nav]").forEach(control => control.addEventListener("click", event => {
     event.preventDefault();
     showView(control.dataset.nav);
-    const heading = $(".view.active h1");
-    if (heading) focusStudyTarget(heading);
+    const heading = $(".view.active h1,.view.active h2,.view.active h3,.view.active summary");
+    if (heading) {
+      if (!heading.matches("summary")) heading.tabIndex = -1;
+      heading.focus({ preventScroll: true });
+    }
   }));
 
   $$("[data-jump]").forEach(control => control.addEventListener("click", event => {
@@ -1374,16 +1445,15 @@
   }
 
   function openDay(day, setHash = true) {
-    showView("aprender", setHash, "dia" + day);
-    const lesson = $("#dia" + day);
-    lesson.open = true;
-    focusStudyTarget(lesson, $("summary", lesson));
+    showView("dia" + day, setHash);
+    $("summary", $("#dia" + day)).focus({ preventScroll: true });
   }
 
   function openCase(id, setHash = true) {
-    showView("practicar", setHash, "caso-" + id);
-    const card = $("[data-case='" + id + "']");
-    focusStudyTarget(card, $("h3", card));
+    showView("caso-" + id, setHash);
+    const heading = $("h3", $("#caso-" + id));
+    heading.tabIndex = -1;
+    heading.focus({ preventScroll: true });
   }
 
   function openStudyShortcut(control) {
@@ -1394,11 +1464,12 @@
   $$("[data-open-day],[data-open-case]").forEach(control => control.addEventListener("click", () => openStudyShortcut(control)));
   $("#startStudy").addEventListener("click", () => {
     const next = studyDays.find(day => !state.days.includes(day));
-    if (!next) showView("evaluar");
+    if (!next) showView("evaluacion");
     else if (state.diagnosticComplete || state.days.length) openDay(next);
     else {
-      showView("inicio", true, "diagnostico");
-      focusStudyTarget($("#diagnostico"), $("#diagnostico h2"));
+      showView("diagnostico");
+      $("#diagnostic-title").tabIndex = -1;
+      $("#diagnostic-title").focus({ preventScroll: true });
     }
   });
 
@@ -1410,6 +1481,7 @@
     const target = document.getElementById(hash);
     const view = target?.closest("[data-view]");
     if (view) {
+      if (target === view) return showView(view.dataset.view, false);
       showView(view.dataset.view, false, hash);
       return focusStudyTarget(target, $("h2", target) || target);
     }
@@ -1419,43 +1491,6 @@
   }
   window.addEventListener("hashchange", followHash);
   followHash();
-
-  $("#fontDown").addEventListener("click", () => {
-    state.fontScale = Math.max(.88, Number((state.fontScale - .06).toFixed(2)));
-    document.documentElement.style.setProperty("--font-scale", state.fontScale);
-    save(); notify("Tamaño de texto reducido");
-  });
-  $("#fontUp").addEventListener("click", () => {
-    state.fontScale = Math.min(1.18, Number((state.fontScale + .06).toFixed(2)));
-    document.documentElement.style.setProperty("--font-scale", state.fontScale);
-    save(); notify("Tamaño de texto aumentado");
-  });
-  document.documentElement.style.setProperty("--font-scale", state.fontScale);
-  document.body.classList.toggle("high-contrast", state.contrast);
-  $("#contrast").setAttribute("aria-pressed", String(state.contrast));
-  $("#contrast").addEventListener("click", () => {
-    state.contrast = !state.contrast;
-    document.body.classList.toggle("high-contrast", state.contrast);
-  $("#contrast").setAttribute("aria-pressed", String(state.contrast));
-    save(); notify(state.contrast ? "Alto contraste activado" : "Contraste normal");
-  });
-
-  $("#listen").addEventListener("click", () => {
-    if (!("speechSynthesis" in window)) return notify("La lectura en voz alta no está disponible en este navegador");
-    if (speaking) { stopSpeech(); return; }
-    const current = $(".view.active");
-    const text = current ? current.innerText.replace(/\s+/g, " ").trim() : "";
-    if (!text) return;
-    const speech = new SpeechSynthesisUtterance(text);
-    speech.lang = "es-ES";
-    speech.rate = .95;
-    speech.onend = stopSpeech;
-    speech.onerror = stopSpeech;
-    window.speechSynthesis.speak(speech);
-    speaking = true;
-    $("#listen").setAttribute("aria-pressed", "true");
-    $("#listen").setAttribute("aria-label", "Detener lectura");
-  });
 
   $("#shareGuide").addEventListener("click", async () => {
     const data = { title: document.title, text: "IA y Pensamiento Crítico en SST: la IA propone; el profesional verifica, decide y responde.", url: location.href };
