@@ -261,6 +261,16 @@
       html{scroll-padding-bottom:20px}
       .toast{bottom:24px}
     }
+    .study-count,.study-progress{margin:0 0 12px;font-size:.88rem}
+    .study-progress{margin:8px 0 0}
+    .study-index{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px;margin-bottom:16px}
+    .study-index button{display:grid;text-align:left;justify-content:start}
+    .study-index small{color:var(--teal)}
+    .study-actions{margin-top:16px}
+    .study-error{color:#9f1239;margin:5px 0 0;font-weight:700;font-size:.85rem}
+    .qblock.needs-answer,.exam-q.needs-answer{outline:2px solid var(--red);outline-offset:3px}
+    .route-card button{margin-top:10px}
+    .btn:disabled{opacity:.55;cursor:default}
   </style>
 <script defer src="https://www.movidasst.com/analytics.js?v=20261025-ga4com2"></script>
 </head>
@@ -311,7 +321,7 @@
         <h1 id="home-title">IA y <em>pensamiento crítico</em> en SST</h1>
         <p class="lead">Cómo auditar, validar y aplicar inteligencia artificial sin delegar la responsabilidad técnica, legal, ética ni operacional.</p>
         <div class="hero-actions">
-          <button class="btn btn-primary" data-jump="#diagnostico">Comenzar diagnóstico →</button>
+          <button class="btn btn-primary" id="startStudy">Comenzar diagnóstico →</button>
           <button class="btn btn-secondary" data-nav="aprender">Explorar la ruta</button>
           <button class="btn btn-soft btn-small" id="shareGuide">Compartir</button>
         </div>
@@ -321,6 +331,7 @@
         <div class="rule">Antes de usar una respuesta de IA en SST, <strong>pásala por <span class="auditoria">Auditor<span class="ia-mark">IA</span></span>.</strong></div>
         <div class="meter-wrap">
           <div class="meter-head"><span>Tu avance</span><span id="progressText">0%</span></div>
+          <p class="study-progress"><strong id="dayCount">0 de 4 días completados</strong><br>Tu progreso se guarda en este dispositivo.</p>
           <div class="meter" role="progressbar" aria-label="Progreso de estudio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progressBar"></span></div>
         </div>
       </aside>
@@ -398,6 +409,7 @@
         </div>
       </div>
       <div class="card diagnostic">
+        <p class="study-count" id="diagnosticCount" aria-live="polite">0 de 4 respondidas</p>
         <div class="qblock" data-diag="0">
           <div class="qtitle">1. La IA cita un artículo exacto de una norma que no tienes a mano. ¿Qué haces?</div>
           <div class="options">
@@ -449,10 +461,10 @@
         </div>
       </div>
       <div class="grid-2">
-        <article class="card route-card" data-route-day="1"><span class="day-num">1</span><h3>El espejismo de la automatización</h3><p>Aprende a distinguir una salida útil de una decisión defendible.</p><span class="status">Pendiente</span></article>
-        <article class="card route-card" data-route-day="2"><span class="day-num">2</span><h3>Falacias y señales de alerta</h3><p>Detecta confabulaciones, referencias falsas y contexto aparente.</p><span class="status">Pendiente</span></article>
-        <article class="card route-card" data-route-day="3"><span class="day-num">3</span><h3>Prompt C.R.I.T.I.C.O.</h3><p>Formula consultas que expongan vacíos, límites y supuestos.</p><span class="status">Pendiente</span></article>
-        <article class="card route-card" data-route-day="4"><span class="day-num">4</span><h3>Gobernanza humana</h3><p>Aplica el decálogo y deja una trazabilidad mínima de revisión.</p><span class="status">Pendiente</span></article>
+        <article class="card route-card" data-route-day="1"><span class="day-num">1</span><h3>El espejismo de la automatización</h3><p>Aprende a distinguir una salida útil de una decisión defendible.</p><span class="status">Pendiente</span><button class="btn btn-secondary btn-small" data-open-day="1">Abrir Día 1</button></article>
+        <article class="card route-card" data-route-day="2"><span class="day-num">2</span><h3>Falacias y señales de alerta</h3><p>Detecta confabulaciones, referencias falsas y contexto aparente.</p><span class="status">Pendiente</span><button class="btn btn-secondary btn-small" data-open-day="2">Abrir Día 2</button></article>
+        <article class="card route-card" data-route-day="3"><span class="day-num">3</span><h3>Prompt C.R.I.T.I.C.O.</h3><p>Formula consultas que expongan vacíos, límites y supuestos.</p><span class="status">Pendiente</span><button class="btn btn-secondary btn-small" data-open-day="3">Abrir Día 3</button></article>
+        <article class="card route-card" data-route-day="4"><span class="day-num">4</span><h3>Gobernanza humana</h3><p>Aplica el decálogo y deja una trazabilidad mínima de revisión.</p><span class="status">Pendiente</span><button class="btn btn-secondary btn-small" data-open-day="4">Abrir Día 4</button></article>
       </div>
       <div class="callout warning" style="margin-top:16px">
         <div class="quote">Curiosidad: NIST prefiere el término “confabulación”.</div>
@@ -528,6 +540,12 @@
         </div>
       </div>
       <div class="accordion">
+        <nav class="study-index" aria-label="Índice de los cuatro días">
+          <button class="btn btn-secondary" data-open-day="1"><span>Día 1 · El espejismo de la automatización</span><small data-day-status="1">Pendiente</small></button>
+          <button class="btn btn-secondary" data-open-day="2"><span>Día 2 · Falacias y señales de alerta</span><small data-day-status="2">Pendiente</small></button>
+          <button class="btn btn-secondary" data-open-day="3"><span>Día 3 · Prompt C.R.I.T.I.C.O.</span><small data-day-status="3">Pendiente</small></button>
+          <button class="btn btn-secondary" data-open-day="4"><span>Día 4 · Gobernanza humana</span><small data-day-status="4">Pendiente</small></button>
+        </nav>
         <details class="lesson" id="dia1" open>
           <summary class="lesson-summary">
             <span class="lesson-icon">01</span>
@@ -556,7 +574,7 @@
                 <div class="quote">Pregunta de reflexión</div>
                 <p>Si la IA no detectó la energía almacenada porque nadie la describió, ¿el error pertenece al modelo, al prompt, a la información de entrada o al proceso de validación? La respuesta madura es: <strong>al sistema completo de uso</strong>; la barrera final sigue siendo humana.</p>
               </div>
-              <div class="row" style="margin-top:16px"><button class="btn btn-primary btn-small" data-complete-day="1">Marcar Día 1 completado</button></div>
+              <div class="row study-actions"><button class="btn btn-primary btn-small" data-complete-day="1">Marcar como completada y continuar</button><button class="btn btn-secondary btn-small" data-open-case="energia">Practicar · Energía residual</button></div>
             </div>
           </div>
         </details>
@@ -586,7 +604,7 @@
                 <div class="quote">¿Sabías que…?</div>
                 <p>NIST recomienda revisar y verificar las fuentes y citas de las salidas generativas durante la medición de riesgo y el monitoreo continuo. <a href="https://doi.org/10.6028/NIST.AI.600-1" target="_blank" rel="noopener">Consulta [2]</a>.</p>
               </div>
-              <div class="row" style="margin-top:16px"><button class="btn btn-primary btn-small" data-complete-day="2">Marcar Día 2 completado</button></div>
+              <div class="row study-actions"><button class="btn btn-primary btn-small" data-complete-day="2">Marcar como completada y continuar</button><button class="btn btn-secondary btn-small" data-open-case="higiene">Practicar · Límites de exposición</button></div>
             </div>
           </div>
         </details>
@@ -619,7 +637,7 @@
                 <p>Después de obtener una propuesta, solicita: <strong>“Actúa como revisor adversarial. Identifica tres modos de falla, dos supuestos frágiles y la evidencia que falsaría tu recomendación.”</strong></p>
               </div>
               <p class="micro" style="margin-top:12px">En la pestaña <strong>Crear</strong> encontrarás un laboratorio que construye el prompt C.R.I.T.I.C.O. con tus datos.</p>
-              <div class="row" style="margin-top:16px"><button class="btn btn-primary btn-small" data-complete-day="3">Marcar Día 3 completado</button><button class="btn btn-secondary btn-small" data-nav="crear">Abrir laboratorio</button></div>
+              <div class="row study-actions"><button class="btn btn-primary btn-small" data-complete-day="3">Marcar como completada y continuar</button><button class="btn btn-secondary btn-small" data-open-case="ergonomia">Practicar · Ergonomía</button></div>
             </div>
           </div>
         </details>
@@ -660,7 +678,7 @@
                 <article class="card"><span class="tag">Revalidar</span><h3>¿Cuándo vuelve a prueba?</h3><p>Cuando cambia el modelo, proveedor, datos, proceso, norma, población expuesta o uso previsto; también ante errores repetidos o una señal de daño.</p></article>
                 <article class="card"><span class="tag">Detener y aprender</span><h3>Incidente de IA</h3><p>Registra salidas peligrosas, citas falsas, fugas de datos, falsos negativos y decisiones anuladas. Suspende el uso crítico hasta cerrar causa, barrera y prueba de retorno.</p></article>
               </div>
-              <div class="row" style="margin-top:16px"><button class="btn btn-primary btn-small" data-complete-day="4">Marcar Día 4 completado</button><button class="btn btn-secondary btn-small" data-nav="practicar">Ir a casos prácticos</button></div>
+              <div class="row study-actions"><button class="btn btn-primary btn-small" data-complete-day="4">Marcar como completada y continuar</button><button class="btn btn-secondary btn-small" data-open-case="incidente">Practicar · Investigación de incidentes</button></div>
             </div>
           </div>
         </details>
@@ -684,12 +702,12 @@
         <div class="case-body">
           <div class="qtitle">¿Qué decisión conserva el control técnico?</div>
           <div class="options">
-            <button class="option" data-case-answer="0">Agregar una advertencia general sobre “tener cuidado”.</button>
+            <button class="option" data-case-answer="0">Aislar la alimentación principal y empezar tras comprobar que el equipo no arranca desde el panel.</button>
             <button class="option" data-case-answer="1">Detener el uso del borrador, inventariar energías, aislar, disipar y verificar cero energía.</button>
-            <button class="option" data-case-answer="2">Pedir a la IA que haga el procedimiento más largo.</button>
+            <button class="option" data-case-answer="2">Conservar el procedimiento y pedir al supervisor que vigile los movimientos inesperados.</button>
           </div>
           <div class="case-feedback callout success" data-feedback="correct"><strong>Correcto.</strong> La salida falló una condición física crítica. El control es revalidar el sistema de energías y comprobar el estado seguro, no mejorar la prosa.</div>
-          <div class="case-feedback callout danger" data-feedback="wrong"><strong>Aún no.</strong> La longitud o la advertencia no controlan energía almacenada. Se requiere parar, identificar, aislar, disipar y verificar.</div>
+          <div class="case-feedback callout danger" data-feedback="wrong"><strong>Aún no.</strong> El estado del panel no demuestra que desapareció la energía acumulada. Identifica las fuentes y los puntos de aislamiento, y exige evidencia de verificación antes de aceptar el borrador.</div>
         </div>
       </article>
 
@@ -698,12 +716,12 @@
         <div class="case-body">
           <div class="qtitle">¿Cuál es la primera validación?</div>
           <div class="options">
-            <button class="option" data-case-answer="0">Usar el número porque es conservador.</button>
-            <button class="option" data-case-answer="1">Promediarlo con otro valor encontrado en internet.</button>
+            <button class="option" data-case-answer="0">Adoptar el valor más bajo de dos tablas como límite y documentar que se eligió por precaución.</button>
+            <button class="option" data-case-answer="1">Usar el valor de una ficha de datos de seguridad aunque la ficha no indique la jornada de referencia.</button>
             <button class="option" data-case-answer="2">Comprobar sustancia, fracción, jornada, edición, jurisdicción y texto de la fuente primaria.</button>
           </div>
           <div class="case-feedback callout success" data-feedback="correct"><strong>Correcto.</strong> Un número aislado carece de alcance. La validación debe reconstruir qué mide, para quién, durante cuánto tiempo y bajo qué marco.</div>
-          <div class="case-feedback callout danger" data-feedback="wrong"><strong>Aún no.</strong> Ser preciso o parecer conservador no demuestra validez. Abre la fuente original y verifica su alcance completo.</div>
+          <div class="case-feedback callout danger" data-feedback="wrong"><strong>Aún no.</strong> Faltan la fuente primaria, la jornada y la fracción a la que se refiere el valor. Si esos criterios no coinciden con el muestreo, cambia la interpretación del resultado.</div>
         </div>
       </article>
 
@@ -712,12 +730,12 @@
         <div class="case-body">
           <div class="qtitle">¿Cómo reorientas el análisis?</div>
           <div class="options">
-            <button class="option" data-case-answer="0">Pedir un afiche con más pasos de levantamiento.</button>
+            <button class="option" data-case-answer="0">Mantener el puesto y repartir el levantamiento entre dos personas durante todo el turno.</button>
             <button class="option" data-case-answer="1">Evaluar eliminar la manipulación, reducir peso, rediseñar alturas, usar ayuda mecánica y organizar el trabajo.</button>
-            <button class="option" data-case-answer="2">Aceptar porque ambos controles dependen del trabajador.</button>
+            <button class="option" data-case-answer="2">Reducir la exposición con pausas programadas y dejar el rediseño para cuando haya más molestias.</button>
           </div>
           <div class="case-feedback callout success" data-feedback="correct"><strong>Correcto.</strong> Mueves la intervención hacia la fuente y el diseño. La capacitación puede acompañar, pero no reemplaza controles más eficaces.</div>
-          <div class="case-feedback callout danger" data-feedback="wrong"><strong>Aún no.</strong> La recomendación descarga el control sobre la persona. Vuelve a la jerarquía y rediseña exposición, carga y sistema.</div>
+          <div class="case-feedback callout danger" data-feedback="wrong"><strong>Aún no.</strong> Faltan peso, frecuencia y distancias de manipulación. Mide la tarea real y usa esos datos para decidir si puedes eliminar el traslado o rediseñar el puesto.</div>
         </div>
       </article>
 
@@ -726,12 +744,12 @@
         <div class="case-body">
           <div class="qtitle">¿Qué salida es técnicamente madura?</div>
           <div class="options">
-            <button class="option" data-case-answer="0">Usar la conclusión para cerrar rápido la investigación.</button>
-            <button class="option" data-case-answer="1">Cambiar “distracción” por “acto inseguro”.</button>
+            <button class="option" data-case-answer="0">Aceptar la distracción como causa principal si coincide con el primer testimonio del supervisor.</button>
+            <button class="option" data-case-answer="1">Revisar la última capacitación y prescribir un refuerzo si hay registros incompletos.</button>
             <button class="option" data-case-answer="2">Tratarla como hipótesis y reconstruir tarea, barreras, diseño, supervisión, carga, cambios y condiciones organizativas.</button>
           </div>
           <div class="case-feedback callout success" data-feedback="correct"><strong>Correcto.</strong> “Distracción” describe, pero rara vez explica. La investigación debe buscar condiciones y barreras que hicieron posible el evento.</div>
-          <div class="case-feedback callout danger" data-feedback="wrong"><strong>Aún no.</strong> Cambiar la etiqueta no amplía la evidencia. Evita cerrar causalidad sin reconstruir el sistema de trabajo.</div>
+          <div class="case-feedback callout danger" data-feedback="wrong"><strong>Aún no.</strong> Faltan la secuencia del trabajo y el estado de las barreras. Contrasta testimonios y registros con la tarea real antes de decidir qué controles corregir.</div>
         </div>
       </article>
     </div>
@@ -782,7 +800,12 @@
     </div>
   </div>
 
-  <section class="section" style="padding-top:6px">
+  <nav class="shell row study-actions" aria-label="Pasos de Crear">
+    <a class="btn btn-secondary" href="#crear-paso-1" data-jump="#crear-paso-1">1. Revisar datos</a>
+    <a class="btn btn-secondary" href="#crear-paso-2" data-jump="#crear-paso-2">2. Generar prompt</a>
+    <a class="btn btn-secondary" href="#crear-paso-3" data-jump="#crear-paso-3">3. Auditar salida</a>
+  </nav>
+  <section id="crear-paso-1" class="section" style="padding-top:6px">
     <div class="shell">
       <div class="section-head">
         <div>
@@ -808,7 +831,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section id="crear-paso-2" class="section">
     <div class="shell">
       <div class="section-head">
         <div>
@@ -835,8 +858,9 @@
             <input id="sector" maxlength="120" placeholder="Ej.: mantenimiento de cinta transportadora">
           </div>
           <div class="wide">
-            <label for="task">Contexto verificable y tarea real</label>
-            <textarea id="task" maxlength="900" placeholder="Qué se hace, dónde, quiénes participan, equipos, materiales, turno y condiciones conocidas. No incluyas nombres ni datos sensibles."></textarea>
+            <label for="task">Contexto verificable y tarea real (obligatorio)</label>
+            <textarea aria-describedby="taskError" aria-required="true" id="task" maxlength="900" placeholder="Qué se hace, dónde, quiénes participan, equipos, materiales, turno y condiciones conocidas. No incluyas nombres ni datos sensibles."></textarea>
+            <p class="study-error" id="taskError" hidden>Describe la tarea real y las condiciones conocidas. Puedes cargar el ejemplo ficticio.</p>
           </div>
           <div class="wide">
             <label for="inputs">Insumos y evidencia disponible</label>
@@ -857,16 +881,17 @@
           <div class="wide row">
             <button class="btn btn-primary" type="submit">Generar prompt crítico</button>
             <button class="btn btn-secondary btn-small" type="reset">Limpiar</button>
+            <button class="btn btn-secondary btn-small" id="loadPromptExample" type="button">Cargar ejemplo ficticio</button>
           </div>
         </form>
 
         <div class="card">
           <span class="tag">Salida editable</span>
           <h3>Tu prompt auditable</h3>
-          <textarea class="prompt-output" id="promptOutput" aria-label="Prompt generado" spellcheck="false">Completa el formulario y presiona “Generar prompt crítico”.</textarea>
+          <textarea class="prompt-output" id="promptOutput" aria-label="Prompt generado" spellcheck="false" readonly placeholder="Completa el formulario y pulsa Generar prompt crítico."></textarea>
           <div class="row" style="margin-top:11px">
-            <button class="btn btn-primary btn-small" id="copyPrompt">Copiar prompt</button>
-            <button class="btn btn-secondary btn-small" id="downloadPrompt">Descargar .txt</button>
+            <button class="btn btn-primary btn-small" id="copyPrompt" disabled>Copiar prompt</button>
+            <button class="btn btn-secondary btn-small" id="downloadPrompt" disabled>Descargar .txt</button>
           </div>
           <div class="callout warning" style="margin-top:13px">
             <p><strong>Control de salida:</strong> si la IA no puede verificar una fuente, debe escribir “NO VERIFICADO”. Una cita inventada no se corrige pidiendo “más precisión”; se corrige abriendo la fuente.</p>
@@ -876,7 +901,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section id="crear-paso-3" class="section">
     <div class="shell">
       <div class="section-head">
         <div>
@@ -940,6 +965,7 @@
         <div><span class="tag">Práctica de recuperación</span><h2>10 decisiones · retroalimentación inmediata</h2><p>Selecciona la opción más defendible. El resultado se procesa y guarda únicamente en tu dispositivo.</p></div>
       </div>
       <form id="examForm">
+        <p class="study-count" id="examCount" aria-live="polite">0 de 10 respondidas</p>
         <div class="exam-list">
           <fieldset class="exam-q" data-exam data-correct="2">
             <legend>1. La IA calcula una concentración y propone un control, pero no muestra unidades ni fórmula. ¿Qué haces primero?</legend>
@@ -1160,7 +1186,16 @@
     renderProgress();
   }
 
+  const studyDays = [1, 2, 3, 4];
+
   function renderProgress() {
+    const next = studyDays.find(day => !state.days.includes(day));
+    $("#dayCount").textContent = state.days.length + " de 4 días completados";
+    $("#startStudy").textContent = !next ? "Ir a la evaluación →" : state.diagnosticComplete || state.days.length
+      ? "Continuar en el Día " + next + " →" : "Comenzar diagnóstico →";
+    $("[data-day-status]").forEach(label => {
+      label.textContent = state.days.includes(Number(label.dataset.dayStatus)) ? "Completado" : "Pendiente";
+    });
     const complete = Number(state.diagnosticComplete) + state.days.length + state.cases.length +
       Number(state.promptBuilt) + Number(state.auditComplete) + Number(state.reviewComplete);
     const percent = Math.round((complete / 12) * 100);
@@ -1176,7 +1211,7 @@
     $$("[data-complete-day]").forEach(button => {
       const day = Number(button.dataset.completeDay);
       const done = state.days.includes(day);
-      button.textContent = done ? "Día completado ✓" : "Marcar Día " + day + " completado";
+      button.textContent = done ? "Día completado · Continuar" : "Marcar como completada y continuar";
       button.classList.toggle("btn-secondary", done);
       button.classList.toggle("btn-primary", !done);
     });
@@ -1210,10 +1245,43 @@
     showView(control.dataset.nav);
   }));
 
-  $$("[data-jump]").forEach(control => control.addEventListener("click", () => {
+  $("[data-jump]").forEach(control => control.addEventListener("click", event => {
+    event.preventDefault();
     const target = $(control.dataset.jump);
     if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
   }));
+
+  function focusStudyTarget(target, focus = target) {
+    if (!focus.matches("summary,button,input,textarea")) focus.tabIndex = -1;
+    focus.focus({ preventScroll: true });
+    target.scrollIntoView({ block: "start" });
+  }
+
+  function openDay(day) {
+    showView("aprender");
+    const lesson = $("#dia" + day);
+    lesson.open = true;
+    focusStudyTarget(lesson, $("summary", lesson));
+  }
+
+  function openCase(id) {
+    showView("practicar");
+    const card = $("[data-case='" + id + "']");
+    focusStudyTarget(card, $("h3", card));
+  }
+
+  function openStudyShortcut(control) {
+    if (control.dataset.openDay) openDay(Number(control.dataset.openDay));
+    else openCase(control.dataset.openCase);
+  }
+
+  $("[data-open-day],[data-open-case]").forEach(control => control.addEventListener("click", () => openStudyShortcut(control)));
+  $("#startStudy").addEventListener("click", () => {
+    const next = studyDays.find(day => !state.days.includes(day));
+    if (!next) showView("evaluar");
+    else if (state.diagnosticComplete || state.days.length) openDay(next);
+    else focusStudyTarget($("#diagnostico"), $("#diagnostico h2"));
+  });
 
   const validViews = ["inicio", "aprender", "practicar", "crear", "evaluar"];
   const hashView = location.hash.replace("#", "");
@@ -1275,11 +1343,19 @@
       diagAnswers[q] = Number(option.dataset.answer);
       $$(".option", block).forEach(item => item.classList.remove("selected", "correct", "wrong"));
       option.classList.add("selected");
+      block.classList.remove("needs-answer");
+      $("#diagnosticCount").textContent = diagAnswers.filter(value => value !== null).length + " de 4 respondidas";
     }));
   });
 
   $("#scoreDiagnostic").addEventListener("click", () => {
-    if (diagAnswers.some(value => value === null)) return notify("Responde las cuatro decisiones");
+    const firstPending = diagAnswers.indexOf(null);
+    if (firstPending !== -1) {
+      const block = $("[data-diag='" + firstPending + "']");
+      block.classList.add("needs-answer");
+      focusStudyTarget(block, $(".option", block));
+      return notify("Responde la decisión " + (firstPending + 1));
+    }
     let score = 0;
     $$("[data-diag]").forEach((block, q) => {
       $$(".option", block).forEach(option => {
@@ -1306,6 +1382,8 @@
 
   $("#resetDiagnostic").addEventListener("click", () => {
     diagAnswers.fill(null);
+    $("#diagnosticCount").textContent = "0 de 4 respondidas";
+    $("[data-diag]").forEach(block => block.classList.remove("needs-answer"));
     $$("#diagnostico .option").forEach(option => option.classList.remove("selected", "correct", "wrong"));
     $("#diagnosticResult").classList.remove("show");
   });
@@ -1316,6 +1394,8 @@
     state.days.sort();
     save();
     notify("Día " + day + " completado");
+    if (day < 4) openDay(day + 1);
+    else openCase("incidente");
   }));
 
   const caseCorrect = { energia: 1, higiene: 2, ergonomia: 1, incidente: 2 };
@@ -1339,10 +1419,47 @@
     return text || fallback;
   }
 
+  const promptTask = $("#task");
+  function showTaskError(invalid) {
+    $("#taskError").hidden = !invalid;
+    promptTask.setAttribute("aria-invalid", String(invalid));
+  }
+
+  function updatePromptActions() {
+    const output = $("#promptOutput");
+    const empty = !output.value.trim();
+    $("#copyPrompt").disabled = empty;
+    $("#downloadPrompt").disabled = empty;
+  }
+  promptTask.addEventListener("input", () => {
+    if (promptTask.value.trim()) showTaskError(false);
+  });
+  $("#promptOutput").addEventListener("input", updatePromptActions);
+  $("#loadPromptExample").addEventListener("click", () => {
+    const example = {
+      sector: "Centro logístico ficticio",
+      task: "En turno diurno se trasladan cajas cerradas desde un pallet a una mesa de preparación. La altura de toma cambia al vaciar el pallet.",
+      inputs: "Croquis ficticio del puesto y observación inicial de un ciclo de trabajo.",
+      jurisdiction: "Ejercicio formativo. Jurisdicción por definir.",
+      missing: "Peso de las cajas, frecuencia de traslado y distancia de alcance.",
+      constraints: "Registrar los datos faltantes y proponer opciones de rediseño para validarlas en terreno."
+    };
+    Object.entries(example).forEach(([id, value]) => {
+      const field = $("#" + id);
+      if (!field.value.trim()) field.value = value;
+    });
+    showTaskError(false);
+    promptTask.focus();
+  });
+
   $("#promptForm").addEventListener("submit", event => {
     event.preventDefault();
     const task = $("#task").value.trim();
-    if (!task) return notify("Describe el contexto y la tarea real");
+    showTaskError(!task);
+    if (!task) {
+      promptTask.focus();
+      return;
+    }
     const prompt = [
       "PROMPT C.R.I.T.I.C.O. PARA SST",
       "",
@@ -1387,13 +1504,18 @@
       "No uses una redacción concluyente cuando la evidencia no lo permita."
     ].join("\n");
     $("#promptOutput").value = prompt;
+    $("#promptOutput").readOnly = false;
+    updatePromptActions();
     state.promptBuilt = true;
     save();
     notify("Prompt crítico generado");
   });
 
   $("#promptForm").addEventListener("reset", () => setTimeout(() => {
-    $("#promptOutput").value = "Completa el formulario y presiona “Generar prompt crítico”.";
+    $("#promptOutput").value = "";
+    $("#promptOutput").readOnly = true;
+    showTaskError(false);
+    updatePromptActions();
   }, 0));
 
   async function copyText(text) {
@@ -1452,32 +1574,75 @@
     downloadText("auditoria-validada-sst.txt", lines.join("\n"));
   });
 
+  const examQuestions = $("[data-exam]");
+  function updateExamCount() {
+    const answered = examQuestions.filter(fieldset => $("input:checked", fieldset)).length;
+    $("#examCount").textContent = answered + " de " + examQuestions.length + " respondidas";
+  }
+  $("#examForm").addEventListener("change", event => {
+    event.target.closest("[data-exam]")?.classList.remove("needs-answer");
+    updateExamCount();
+  });
+  $("#examResult").addEventListener("click", event => {
+    const control = event.target.closest("[data-open-day],[data-open-case]");
+    if (control) openStudyShortcut(control);
+  });
+
+  const examReview = [
+    ["higiene", "Caso de higiene · comprobar el cálculo y las unidades"],
+    ["energia", "Caso de energía residual · contrastar con el trabajo real"],
+    [2, "Día 2 · vigencia y aplicabilidad de las fuentes"],
+    ["ergonomia", "Caso de ergonomía · jerarquía de controles"],
+    [3, "Día 3 · datos, contexto y límites del prompt"],
+    [2, "Día 2 · verificación independiente"],
+    [4, "Día 4 · revalidación ante cambios"],
+    [4, "Día 4 · gobernanza y seguimiento"],
+    [3, "Día 3 · instrucciones no confiables en documentos"],
+    [2, "Día 2 · comprobar la fuente antes de utilizar la afirmación"]
+  ];
+
   $("#examForm").addEventListener("submit", event => {
     event.preventDefault();
-    const questions = $$("[data-exam]");
+    const questions = examQuestions;
+    const pending = questions.find(fieldset => !$("input:checked", fieldset));
+    if (pending) {
+      pending.classList.add("needs-answer");
+      focusStudyTarget(pending, $("input", pending));
+      return notify("Completa las decisiones pendientes");
+    }
     let score = 0;
-    let answered = 0;
     const missed = [];
     questions.forEach((fieldset, index) => {
       const selected = $("input:checked", fieldset);
       fieldset.style.borderColor = "";
-      if (!selected) return;
-      answered++;
       const correct = selected.value === fieldset.dataset.correct;
       if (correct) score++;
       else missed.push(index + 1);
       fieldset.style.borderColor = correct ? "var(--green)" : "var(--red)";
     });
-    if (answered < questions.length) return notify("Responde las 10 preguntas");
     const pct = score * 10;
     const confidence = $("#examConfidence").value;
     const level = pct >= 80 ? "Buen manejo de los criterios" : pct >= 60 ? "Hay algunos temas por repasar" : "Conviene repasar los puntos principales";
     let calibration = "Compara tus dudas con las preguntas marcadas y vuelve a la evidencia, no a la intuición.";
-    if (confidence === "high" && pct < 80) calibration = "Tu confianza fue mayor que el resultado: revisa automatización, autoridad aparente y exceso de confianza.";
+    if (confidence === "high" && missed.length) calibration = "Declaraste confianza alta en el conjunto. Antes de repetir, justifica con evidencia las decisiones " + missed.join(", ") + ".";
     if (confidence === "low" && pct >= 80) calibration = "Tu resultado fue mayor que tu confianza: registra qué evidencias te ayudaron a decidir para calibrarte mejor.";
     const review = missed.length ? "Conviene revisar las decisiones " + missed.join(", ") + "." : "No hubo respuestas incorrectas; intenta justificar cada decisión con una fuente y evidencia de campo.";
     const result = $("#examResult");
     result.innerHTML = '<div class="score">' + pct + '%</div><h3>' + level + '</h3><p>' + review + '</p><p><strong>Calibración:</strong> ' + calibration + '</p><p class="micro">Úsalo para priorizar tu repaso y volver a contrastar con evidencia.</p>';
+    if (missed.length) {
+      const list = document.createElement("ul");
+      missed.forEach(number => {
+        const [target, label] = examReview[number - 1];
+        const item = document.createElement("li");
+        const control = document.createElement("button");
+        control.className = "btn btn-secondary btn-small";
+        control.dataset[typeof target === "number" ? "openDay" : "openCase"] = target;
+        control.textContent = "Decisión " + number + " · " + label;
+        item.append(control);
+        list.append(item);
+      });
+      result.append(list);
+    }
     result.className = "result callout show " + (pct >= 80 ? "success" : pct >= 60 ? "warning" : "danger");
     state.reviewComplete = true;
     state.examScore = pct;
@@ -1486,7 +1651,11 @@
   });
 
   $("#examForm").addEventListener("reset", () => setTimeout(() => {
-    $$("[data-exam]").forEach(fieldset => fieldset.style.borderColor = "");
+    examQuestions.forEach(fieldset => {
+      fieldset.style.borderColor = "";
+      fieldset.classList.remove("needs-answer");
+    });
+    updateExamCount();
     $("#examResult").className = "result callout";
   }, 0));
 
