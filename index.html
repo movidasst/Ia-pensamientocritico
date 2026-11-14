@@ -363,6 +363,13 @@
       .brand-slogan{font-size:.56rem}
       html{scroll-padding-top:92px}
     }
+    .review-solution{margin-top:16px}
+    .review-solution summary{cursor:pointer;color:var(--teal);font-weight:800;padding-block:8px}
+    [data-view="iperc-aplicado"] dt{font-weight:800;color:var(--navy);margin-top:8px}
+    [data-view="iperc-aplicado"] dd{margin-left:0}
+    [data-view="iperc-aplicado"] blockquote{margin:0 0 1em;padding-left:14px;border-left:3px solid var(--teal)}
+    [data-view="revision-informe"] blockquote{margin-inline:0}
+    #auditPriorities{font-size:.88rem;padding-left:20px}
   </style>
 <script defer src="https://www.movidasst.com/analytics.js?v=20261025-ga4com2"></script>
 </head>
@@ -411,7 +418,8 @@
         <h1 id="home-title">IA y <em>pensamiento crítico</em> en SST</h1>
         <p class="lead">Cómo auditar, validar y aplicar inteligencia artificial sin delegar la responsabilidad técnica, legal, ética ni operacional.</p>
         <div class="hero-actions">
-          <button class="btn btn-primary" id="startStudy">Comenzar diagnóstico →</button>
+          <a class="btn btn-primary" href="#crear-paso-3" data-nav="crear-paso-3">Auditar una respuesta de IA →</a>
+          <button class="btn btn-secondary" id="startStudy">Aprender con la guía →</button>
           <button class="btn btn-secondary" data-nav="ruta">Explorar la ruta</button>
           <button class="btn btn-soft btn-small" id="shareGuide">Compartir</button>
         </div>
@@ -562,6 +570,7 @@
         <div>
           <span class="tag">Ruta sugerida</span>
           <h2>4 días · 12 a 15 minutos por día</h2>
+          <a href="#diagnostico" data-nav="diagnostico">Hacer el diagnóstico inicial</a>
           <p>Puedes hacerla de una vez o avanzar por cápsulas. El progreso queda guardado únicamente en este dispositivo.</p>
         </div>
       </div>
@@ -796,6 +805,7 @@
 
   <section class="section" style="padding-top:6px">
     <div class="shell grid-2">
+      <a class="btn btn-primary" href="#iperc-aplicado" data-nav="iperc-aplicado">Caso completo · IPERC en terreno →</a>
       <button class="btn btn-secondary" data-open-case="energia">Energía residual en mantenimiento →</button>
       <button class="btn btn-secondary" data-open-case="higiene">Un límite «oficial» sin origen →</button>
       <button class="btn btn-secondary" data-open-case="ergonomia">La respuesta termina en capacitación →</button>
@@ -952,6 +962,9 @@
           <div>
             <label for="useCase">Tipo de apoyo</label>
             <select id="useCase">
+              <option>IPERC</option>
+              <option>Procedimiento de tarea crítica</option>
+              <option>Higiene ocupacional</option>
               <option>Análisis preliminar de peligros</option>
               <option>Borrador de procedimiento</option>
               <option>Revisión adversarial de controles</option>
@@ -959,6 +972,7 @@
               <option>Planificación de emergencia</option>
               <option>Material de formación</option>
             </select>
+            <p class="micro" id="templateHint"></p>
           </div>
           <div>
             <label for="sector">Sector o proceso</label>
@@ -1036,16 +1050,17 @@
           <div class="audit-score" role="status" aria-atomic="true">
             <span>Índice de auditabilidad</span>
             <div><strong id="auditPercent">0%</strong></div>
-            <p id="auditLabel">No evaluado. Marca únicamente evidencias comprobables.</p>
+            <p id="auditLabel">Pendiente de revisión.</p>
+            <ul id="auditPriorities"><li>Comprueba la fuente primaria, su vigencia, la evidencia de terreno y quién decide.</li></ul>
           </div>
           <div class="card" style="margin-top:14px">
             <h3>Interpretación</h3>
-            <div class="evidence"><i style="color:#4ca52e">●</i><div><strong>85–100% · Avanza con control.</strong> Conserva el registro y la aprobación definida.</div></div>
-            <div class="evidence"><i style="color:#e8a600">●</i><div><strong>60–84% · Revisión obligatoria.</strong> Cierra brechas antes de utilizar la salida.</div></div>
-            <div class="evidence"><i style="color:#d64545">●</i><div><strong>0–59% · No usar.</strong> La salida carece de barreras suficientes.</div></div>
+            <p>El porcentaje muestra cuántas comprobaciones completaste. Revisa las verificaciones pendientes antes de decidir si la respuesta puede utilizarse.</p>
             <details class="audit-notes">
               <summary>Datos del registro (opcionales)</summary>
               <p class="micro">Usa referencias internas y un cargo o rol. Evita nombres, identificaciones y datos sensibles.</p>
+              <label for="auditClaims">Afirmaciones verificadas</label>
+              <textarea id="auditClaims" maxlength="600" placeholder="Anota qué afirmación comprobaste y con qué resultado"></textarea>
               <label for="auditEvidence">Evidencia consultada</label>
               <textarea id="auditEvidence" maxlength="600" placeholder="Fuente primaria, edición, jurisdicción y fecha de consulta"></textarea>
               <label for="auditDecision">Decisión</label>
@@ -1236,6 +1251,60 @@
     </div>
   </section>
 </section>
+<section class="view section" id="iperc-aplicado" data-view="iperc-aplicado" data-parent-view="practicar" aria-labelledby="iperc-title">
+  <div class="shell">
+    <p><a href="#practicar" data-nav="practicar">← Volver a los casos</a></p>
+    <h1 id="iperc-title">Caso IPERC · Retirar un atasco en una cinta</h1>
+    <p class="lead">Caso ficticio de una tarea no rutinaria. Revisa qué cambia en la matriz al observar el trabajo.</p>
+    <article class="card">
+      <h2>1. Solicitud a la IA</h2>
+      <blockquote>Prepara una matriz IPERC preliminar para retirar material atascado en la descarga de una cinta. Identifica los datos que habría que verificar en terreno.</blockquote>
+      <h2>2. Fragmento de la respuesta</h2>
+      <blockquote>Peligro: contacto con partes móviles. Control: detener la cinta desde el panel, usar guantes y retirar el material. Riesgo residual: bajo.</blockquote>
+      <h2>3. Hallazgo en terreno</h2>
+      <p>Para alcanzar el atasco, la persona entra en la zona de un actuador neumático que conserva presión con la cinta detenida. El equipo también puede recibir una orden de arranque desde otro puesto.</p>
+      <p><strong>Antes de abrir la solución, identifica qué afirmación cuestionarías y qué evidencia pedirías.</strong></p>
+      <details class="review-solution">
+        <summary>Ver la matriz corregida y el registro AuditorIA</summary>
+        <h3>4. Matriz corregida</h3>
+        <dl>
+          <dt>Etapa</dt><dd>Acceso para retirar el material atascado.</dd>
+          <dt>Peligro y consecuencia</dt><dd>Energía neumática acumulada o arranque inesperado. Posible atrapamiento o aplastamiento.</dd>
+          <dt>Control existente y brecha</dt><dd>La parada del panel detiene el movimiento observado. Queda por demostrar el control de todas las energías y del arranque remoto.</dd>
+          <dt>Controles a evaluar</dt><dd>Eliminar la necesidad de entrar rediseñando el punto de desatasco. Para cualquier acceso, exigir un procedimiento validado de control de energías y evidencia de su verificación en terreno.</dd>
+          <dt>Riesgo residual</dt><dd>Pendiente de valorar con criterios definidos y evidencia de eficacia de los controles.</dd>
+        </dl>
+        <h3>5. Registro AuditorIA</h3>
+        <dl>
+          <dt>Afirmación cuestionada</dt><dd>«Riesgo residual bajo».</dd>
+          <dt>Evidencia consultada</dt><dd>Observación del acceso y del actuador, y comprobación de la posibilidad de arranque remoto en el ejercicio.</dd>
+          <dt>Decisión</dt><dd>Retirar la valoración de riesgo bajo del borrador. Mantener la decisión de ejecución pendiente.</dd>
+          <dt>Responsable y pendientes</dt><dd>Equipo de SST y mantenimiento, con participación de quienes ejecutan la tarea. Contrastar manual y procedimiento, comprobar barreras y validar la matriz con la persona competente.</dd>
+        </dl>
+      </details>
+    </article>
+  </div>
+</section>
+<section class="view section" id="revision-informe" data-view="revision-informe" data-parent-view="evaluar" aria-labelledby="review-title">
+  <div class="shell">
+    <p><a href="#evaluar" data-nav="evaluar">← Volver a Evaluar</a></p>
+    <h1 id="review-title">Ejercicio · Revisar un informe</h1>
+    <p class="lead">Lee el fragmento y escribe cómo lo revisarías. Usa únicamente los datos del ejercicio.</p>
+    <blockquote class="card">«La exposición a polvo cumple el límite. Una lectura puntual fue baja y los trabajadores utilizan protección respiratoria. Se recomienda cerrar el hallazgo».</blockquote>
+    <form id="reportExercise" class="card form-grid">
+      <div><label for="reportClaim">¿Qué afirmación cuestionarías?</label><textarea id="reportClaim" required maxlength="600"></textarea></div>
+      <div><label for="reportEvidence">¿Qué evidencia buscarías?</label><textarea id="reportEvidence" required maxlength="600"></textarea></div>
+      <div><label for="reportDecision">¿Qué decisión dejarías pendiente?</label><textarea id="reportDecision" required maxlength="600"></textarea></div>
+      <div><button class="btn btn-primary" type="submit">Comparar con la revisión comentada</button></div>
+    </form>
+    <article id="reportFeedback" class="card study-actions" hidden tabindex="-1">
+      <h2>Revisión comentada</h2>
+      <p><strong>Afirmación.</strong> Cuestiona «cumple el límite» y el cierre del hallazgo. Una lectura puntual requiere contexto para servir como evidencia de cumplimiento.</p>
+      <p><strong>Evidencia.</strong> Identifica el agente y la fracción, la tarea, la duración, la representatividad, el método, las unidades y la fuente vigente del criterio aplicable.</p>
+      <p><strong>Decisión.</strong> Deja pendiente la conclusión de cumplimiento y el cierre hasta contar con datos comparables y revisión competente.</p>
+    </article>
+  </div>
+</section>
 </main>
 
 <footer>
@@ -1315,7 +1384,7 @@
     const next = studyDays.find(day => !state.days.includes(day));
     $("#dayCount").textContent = state.days.length + " de 4 días completados";
     $("#startStudy").textContent = !next ? "Ir a la evaluación →" : state.diagnosticComplete || state.days.length
-      ? "Continuar en el Día " + next + " →" : "Comenzar diagnóstico →";
+      ? "Continuar en el Día " + next + " →" : "Aprender con la guía →";
     $$("[data-day-status]").forEach(label => {
       label.textContent = state.days.includes(Number(label.dataset.dayStatus)) ? "Completado" : "Pendiente";
     });
@@ -1400,6 +1469,14 @@
       links.append(link);
       main.append(panel);
     });
+    if (parent === "evaluar") {
+      const exercise = document.createElement("a");
+      exercise.className = "btn btn-secondary";
+      exercise.href = "#revision-informe";
+      exercise.dataset.nav = "revision-informe";
+      exercise.textContent = "Revisar un fragmento de informe";
+      links.append(exercise);
+    }
     index.append(links);
     if (parent === "aprender") panels[3]?.remove();
   }
@@ -1590,6 +1667,29 @@
   }
 
   const promptTask = $("#task");
+  const templates = {
+    IPERC: [
+      "Describe actividad y etapa, personas expuestas, energías o agentes, barreras actuales y criterios de valoración.",
+      "Entrega una matriz preliminar por etapa con peligro, evento o exposición, consecuencia, controles existentes y evidencia de eficacia, controles propuestos en orden de jerarquía, responsable y dato pendiente. Deja la valoración inicial o residual como pendiente cuando falten criterios o evidencia."
+    ],
+    "Procedimiento de tarea crítica": [
+      "Indica secuencia de trabajo, equipos y energías, roles, controles críticos y condiciones de detención.",
+      "Entrega un borrador por paso con peligro, control crítico, modo de verificarlo, responsable y criterio de detención. Enumera prerrequisitos y revisiones pendientes. Deja la autorización al proceso formal."
+    ],
+    "Investigación de incidente": [
+      "Indica cronología conocida, evidencias disponibles y barreras esperadas y observadas. Omite datos identificables.",
+      "Separa hechos con evidencia, testimonios, hipótesis, datos faltantes y barreras. Presenta una cronología y acciones vinculadas a los hallazgos verificables. Evita inferir culpabilidad o dar hipótesis por confirmadas."
+    ],
+    "Higiene ocupacional": [
+      "Indica agente, tareas, grupo de exposición, jornada, datos de muestreo y jurisdicción.",
+      "Entrega un plan preliminar de caracterización por tarea y grupo de exposición. Detalla método, fracción, duración, unidades, condiciones de muestreo y criterios de comparación a verificar. Si faltan datos, declara pendiente la interpretación."
+    ]
+  };
+  function showTemplateHint() {
+    $("#templateHint").textContent = templates[$("#useCase").value]?.[0] || "Describe la tarea, la evidencia disponible y las decisiones que quedan pendientes.";
+  }
+  $("#useCase").addEventListener("change", showTemplateHint);
+  showTemplateHint();
   function showTaskError(invalid) {
     $("#taskError").hidden = !invalid;
     promptTask.setAttribute("aria-invalid", String(invalid));
@@ -1671,7 +1771,8 @@
       "7. Contrapunto: tres modos de falla de tu propia propuesta.",
       "8. Decisiones que deben quedar en manos de una persona competente.",
       "",
-      "No uses una redacción concluyente cuando la evidencia no lo permita."
+      "No uses una redacción concluyente cuando la evidencia no lo permita.",
+      ...(templates[$("#useCase").value] ? ["", "ENTREGABLE POR TAREA", templates[$("#useCase").value][1]] : [])
     ].join("\n");
     $("#promptOutput").value = prompt;
     $("#promptOutput").readOnly = false;
@@ -1684,6 +1785,7 @@
   $("#promptForm").addEventListener("reset", () => setTimeout(() => {
     $("#promptOutput").value = "";
     $("#promptOutput").readOnly = true;
+    showTemplateHint();
     showTaskError(false);
     updatePromptActions();
   }, 0));
@@ -1722,11 +1824,24 @@
     const count = checks.filter(item => item.checked).length;
     const pct = Math.round((count / checks.length) * 100);
     $("#auditPercent").textContent = pct + "%";
-    let label = "No usar: faltan barreras fundamentales.";
-    if (pct >= 85) label = "Avanza con control y conserva la aprobación.";
-    else if (pct >= 60) label = "Revisión obligatoria: cierra brechas.";
+    const priorities = [
+      ["a3", "Abrir la fuente primaria y contrastar las afirmaciones críticas."],
+      ["a4", "Confirmar edición, vigencia y aplicabilidad de la fuente."],
+      ["a6", "Obtener evidencia de terreno que permita contrastar la respuesta."],
+      ["a12", "Identificar al responsable competente y documentar su decisión."]
+    ].filter(([id]) => !document.getElementById(id).checked);
+    const label = priorities.length
+      ? "Uso pendiente: completa las verificaciones prioritarias."
+      : count < checks.length
+        ? "Uso pendiente: revisa las casillas restantes."
+        : "Revisión documentada. La decisión corresponde al responsable competente.";
+    $("#auditPriorities").replaceChildren(...priorities.map(([, message]) => {
+      const item = document.createElement("li");
+      item.textContent = message;
+      return item;
+    }));
     $("#auditLabel").textContent = label;
-    state.auditComplete = pct >= 85;
+    state.auditComplete = count === checks.length;
     save();
     return { checks, count, pct, label };
   }
@@ -1746,12 +1861,21 @@
       "",
       ...$$(".audit-notes label").map(field => field.textContent + ": " + clean(document.getElementById(field.htmlFor).value, "Sin registrar")),
       "",
+      ...$$("li", $("#auditPriorities")).map(item => "Prioridad: " + item.textContent),
+      "",
       ...checks.map(item => (item.checked ? "[CUMPLE] " : "[PENDIENTE] ") + $("label[for='" + item.id + "']").innerText),
       "",
       "Nota: este registro organiza la revisión y no constituye autorización de trabajo ni declaración de cumplimiento.",
       "La Movida de SST Plus · www.movidasst.com"
     ];
     downloadText("auditoria-validada-sst.txt", lines.join("\n"));
+  });
+
+  $("#reportExercise").addEventListener("submit", event => {
+    event.preventDefault();
+    const feedback = $("#reportFeedback");
+    feedback.hidden = false;
+    feedback.focus();
   });
 
   const examQuestions = $$("[data-exam]");
