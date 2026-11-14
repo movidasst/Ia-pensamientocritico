@@ -295,7 +295,6 @@
     .utility-in{padding-block:8px;flex-wrap:wrap;column-gap:16px;row-gap:4px}
     .brand{display:grid;justify-items:start;gap:1px}
     .brand-horizontal{width:192px;height:50px;object-fit:contain;object-position:left center}
-    .brand-slogan{color:var(--navy);font-size:.62rem;font-weight:800;line-height:1.2}
     .header-social{display:flex;align-items:center;justify-content:center;gap:6px}
     .header-social a{display:grid;place-items:center;width:44px;height:44px;border-radius:13px;color:var(--navy);background:#e8f5f5;border:1px solid #b9dddd;transition:background .15s,color .15s}
     .header-social a:hover,.header-social a:focus-visible{color:#fff;background:var(--navy)}
@@ -340,6 +339,21 @@
       .header-tools .icon-btn,.header-social a{width:32px;height:40px}
       html{scroll-padding-top:140px}
     }
+    @media(max-width:959px){
+      .bottom-nav{
+        inset:auto 0 0;
+        width:100%;
+        transform:none;
+        padding:4px max(4px,env(safe-area-inset-right)) calc(4px + env(safe-area-inset-bottom)) max(4px,env(safe-area-inset-left));
+        background:#fff;
+        border:0;
+        border-top:1px solid var(--line);
+        border-radius:0;
+        box-shadow:none;
+      }
+      .bottom-nav .nav-btn{border-radius:8px}
+      html{scroll-padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+    }
   </style>
 <script defer src="https://www.movidasst.com/analytics.js?v=20261025-ga4com2"></script>
 </head>
@@ -350,7 +364,6 @@
   <div class="shell utility-in">
     <a class="brand" href="#inicio" data-nav="inicio" aria-label="La Movida de SST Plus, ir al inicio">
       <img class="brand-horizontal" src="/logo-horizontal-movida-sst-plus.webp" alt="La Movida de SST Plus">
-      <span class="brand-slogan">De la Reacción a la Prevención</span>
     </a>
     <div class="header-tools"><div class="tools" aria-label="Herramientas de accesibilidad">
       <button class="icon-btn" id="fontDown" aria-label="Reducir tamaño del texto">A−</button>
