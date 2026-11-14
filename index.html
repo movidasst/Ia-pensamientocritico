@@ -1193,7 +1193,7 @@
     $("#dayCount").textContent = state.days.length + " de 4 días completados";
     $("#startStudy").textContent = !next ? "Ir a la evaluación →" : state.diagnosticComplete || state.days.length
       ? "Continuar en el Día " + next + " →" : "Comenzar diagnóstico →";
-    $("[data-day-status]").forEach(label => {
+    $$("[data-day-status]").forEach(label => {
       label.textContent = state.days.includes(Number(label.dataset.dayStatus)) ? "Completado" : "Pendiente";
     });
     const complete = Number(state.diagnosticComplete) + state.days.length + state.cases.length +
@@ -1245,7 +1245,7 @@
     showView(control.dataset.nav);
   }));
 
-  $("[data-jump]").forEach(control => control.addEventListener("click", event => {
+  $$("[data-jump]").forEach(control => control.addEventListener("click", event => {
     event.preventDefault();
     const target = $(control.dataset.jump);
     if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1275,7 +1275,7 @@
     else openCase(control.dataset.openCase);
   }
 
-  $("[data-open-day],[data-open-case]").forEach(control => control.addEventListener("click", () => openStudyShortcut(control)));
+  $$("[data-open-day],[data-open-case]").forEach(control => control.addEventListener("click", () => openStudyShortcut(control)));
   $("#startStudy").addEventListener("click", () => {
     const next = studyDays.find(day => !state.days.includes(day));
     if (!next) showView("evaluar");
@@ -1383,7 +1383,7 @@
   $("#resetDiagnostic").addEventListener("click", () => {
     diagAnswers.fill(null);
     $("#diagnosticCount").textContent = "0 de 4 respondidas";
-    $("[data-diag]").forEach(block => block.classList.remove("needs-answer"));
+    $$("[data-diag]").forEach(block => block.classList.remove("needs-answer"));
     $$("#diagnostico .option").forEach(option => option.classList.remove("selected", "correct", "wrong"));
     $("#diagnosticResult").classList.remove("show");
   });
