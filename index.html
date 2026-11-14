@@ -237,10 +237,10 @@
       .shell{width:94%}.card{box-shadow:none}
     }
     h1,h2,h3,h4,.brand-copy,.foot-brand{font-family:"Outfit",system-ui,sans-serif}
-    .access-menu{position:relative;flex:none}
-    .access-menu summary{cursor:pointer;color:var(--navy);font-size:.75rem;font-weight:700;padding:12px 0 12px 5px}
-    .access-menu .tools{position:absolute;top:calc(100% + 4px);right:0;background:#fff;padding:8px;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
-    .access-menu .icon-btn{width:44px;height:44px}
+
+
+
+
     .listen-stop,#listen[aria-pressed="true"] .listen-play{display:none}
     #listen[aria-pressed="true"] .listen-stop{display:block}
     #contrast[aria-pressed="true"],#listen[aria-pressed="true"]{background:var(--navy);color:#fff}
@@ -284,7 +284,7 @@
     @media(max-width:460px){
       .brand-copy span{letter-spacing:.06em}
       .utility-in{gap:6px}
-      .access-menu summary{font-size:.68rem}
+
       .grid-2>*,.grid-3>*,.form-grid>*{min-width:0}
     }
     @media(prefers-reduced-motion:reduce){
@@ -316,11 +316,30 @@
     @media(max-width:959px){
       .utility-in{display:grid;grid-template-columns:minmax(0,1fr) auto}
       .brand{grid-area:1 / 1}
-      .access-menu{grid-area:1 / 2}
+
       .header-social{grid-area:2 / 1 / 3 / 3;justify-content:flex-start}
       html{scroll-padding-top:140px}
     }
     @media print{.utility{display:none!important}}
+    .header-tools{display:flex;justify-content:flex-start}
+    .header-tools .icon-btn{width:36px;height:40px}
+    .utility-in{justify-content:flex-start}
+    @media(min-width:960px){
+      .utility-in>.bottom-nav{margin-left:auto}
+      .utility-in{column-gap:10px}
+      .header-tools .tools{gap:3px}
+      .brand-horizontal{width:152px}
+      .header-social a{width:37px}
+      .bottom-nav .nav-btn{padding-inline:6px}
+    }
+    @media(max-width:959px){
+      .utility-in{grid-template-columns:minmax(0,1fr) auto}
+      .header-tools{grid-area:2 / 1}
+      .header-social{grid-area:2 / 2;justify-content:flex-start}
+      .header-tools .tools,.header-social{gap:3px}
+      .header-tools .icon-btn,.header-social a{width:32px;height:40px}
+      html{scroll-padding-top:140px}
+    }
   </style>
 <script defer src="https://www.movidasst.com/analytics.js?v=20261025-ga4com2"></script>
 </head>
@@ -333,6 +352,12 @@
       <img class="brand-horizontal" src="/logo-horizontal-movida-sst-plus.webp" alt="La Movida de SST Plus">
       <span class="brand-slogan">De la Reacción a la Prevención</span>
     </a>
+    <div class="header-tools"><div class="tools" aria-label="Herramientas de accesibilidad">
+      <button class="icon-btn" id="fontDown" aria-label="Reducir tamaño del texto">A−</button>
+      <button class="icon-btn" id="fontUp" aria-label="Aumentar tamaño del texto">A+</button>
+      <button class="icon-btn" id="contrast" aria-label="Activar alto contraste" title="Alto contraste" aria-pressed="false"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor"/></svg></button>
+      <button class="icon-btn" id="listen" aria-label="Escuchar la sección actual" title="Lectura en voz alta" aria-pressed="false"><svg class="listen-play" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4m12-1a6 6 0 0 1 0 8m2-11a10 10 0 0 1 0 14"/></svg><svg class="listen-stop" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg></button>
+      </div></div>
     <nav class="bottom-nav" aria-label="Navegación principal">
       <button class="nav-btn active" data-nav="inicio" aria-label="Inicio">
         <svg aria-hidden="true"><use href="#i-home"></use></svg><span>Inicio</span>
@@ -356,15 +381,7 @@
         <a href="https://www.youtube.com/@movidasst" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="4"/><path d="m10 9 5 3-5 3Z"/></svg></a>
         <a href="https://www.linkedin.com/in/davidlinaresbrea/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7m0-10h.01m4 10v-7m0 3a3 3 0 0 1 6 0v4"/></svg></a>
       </div>
-    <details class="access-menu">
-      <summary>Accesibilidad</summary>
-      <div class="tools" aria-label="Herramientas de accesibilidad">
-      <button class="icon-btn" id="fontDown" aria-label="Reducir tamaño del texto">A−</button>
-      <button class="icon-btn" id="fontUp" aria-label="Aumentar tamaño del texto">A+</button>
-      <button class="icon-btn" id="contrast" aria-label="Activar alto contraste" title="Alto contraste" aria-pressed="false"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor"/></svg></button>
-      <button class="icon-btn" id="listen" aria-label="Escuchar la sección actual" title="Lectura en voz alta" aria-pressed="false"><svg class="listen-play" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4m12-1a6 6 0 0 1 0 8m2-11a10 10 0 0 1 0 14"/></svg><svg class="listen-stop" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg></button>
-      </div>
-    </details>
+    
   </div>
 </header>
 
